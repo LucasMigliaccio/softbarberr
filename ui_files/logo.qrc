@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="imagess">
+    <file>efectsivo.png</file>
+    <file>efectivo.png</file>
+    <file>mercadopago.png</file>
+    <file>strip.png</file>
+  </qresource>
+</RCC>

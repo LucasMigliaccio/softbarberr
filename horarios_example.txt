@@ -1,0 +1,22 @@
+CREATE TABLE HorariosVendedores (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Vendedor VARCHAR(255),
+    Dia VARCHAR(255),
+    IntervaloTiempo VARCHAR(255)
+);
+
+
+IntervaloTiempo  CAMBIARLO POR TIME 
+
+
+o asi 
+
+
+
+CREATE TABLE HorariosVendedores (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Empleado Foreing KEY,
+    Dia VARCHAR(255),
+    HorarioEntrada TIME,
+    HorarioSalida TIME
+);
