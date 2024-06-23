@@ -183,13 +183,13 @@ class AddEditMenu(object):
         self.horizontalLayout_7.setSpacing(0)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.comboBox = QComboBox(self.frame_4)
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setMinimumSize(QSize(70, 40))
-        self.comboBox.setStyleSheet(u"background-color: white;\n"
+        self.barbero_comboBox = QComboBox(self.frame_4)
+        self.barbero_comboBox.setObjectName(u"barbero_comboBox")
+        self.barbero_comboBox.setMinimumSize(QSize(70, 40))
+        self.barbero_comboBox.setStyleSheet(u"background-color: white;\n"
 "border: 1px solid grey;")
 
-        self.horizontalLayout_7.addWidget(self.comboBox)
+        self.horizontalLayout_7.addWidget(self.barbero_comboBox)
 
         self.pushButton_img_3 = QPushButton(self.frame_4)
         self.pushButton_img_3.setObjectName(u"pushButton_img_3")
@@ -210,7 +210,7 @@ class AddEditMenu(object):
 "background-color: rgb(0, 195, 0);\n"
 "}")
         icon4 = QIcon()
-        icon4.addFile(u"../assets/icons/plus.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u"./assets/icons/plus.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_img_3.setIcon(icon4)
         self.pushButton_img_3.setIconSize(QSize(35, 35))
 
@@ -242,14 +242,13 @@ class AddEditMenu(object):
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.imagen_lineEdit_2 = QLineEdit(self.frame_3)
-        self.imagen_lineEdit_2.setObjectName(u"imagen_lineEdit_2")
-        self.imagen_lineEdit_2.setMinimumSize(QSize(70, 40))
-        self.imagen_lineEdit_2.setMaximumSize(QSize(16777215, 16777215))
-        self.imagen_lineEdit_2.setStyleSheet(u"background-color: white;\n"
+        self.cliente_comboBox = QComboBox(self.frame_3)
+        self.cliente_comboBox.setObjectName(u"cliente_comboBox")
+        self.cliente_comboBox.setMinimumSize(QSize(70, 40))
+        self.cliente_comboBox.setStyleSheet(u"background-color: white;\n"
 "border: 1px solid grey;")
 
-        self.horizontalLayout_5.addWidget(self.imagen_lineEdit_2)
+        self.horizontalLayout_5.addWidget(self.cliente_comboBox)
 
         self.pushButton_img_2 = QPushButton(self.frame_3)
         self.pushButton_img_2.setObjectName(u"pushButton_img_2")
@@ -379,7 +378,7 @@ class AddEditMenu(object):
 "background-color: rgb(0, 195, 0);\n"
 "}")
         icon5 = QIcon()
-        icon5.addFile(u"../assets/icons/open-file.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon5.addFile(u"./assets/icons/open-file.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_img.setIcon(icon5)
         self.pushButton_img.setIconSize(QSize(35, 35))
 

@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QWidget, QFileDialog
 from PySide6.QtCore import Qt, QDateTime
 
 
-from views.add_edit_cita_fecha import AddEditMenu
+from views.add_edit_cita_cb import AddEditMenu
 from views.general_custom_ui import GeneralCustomUi
 
 from database import citas
@@ -31,8 +31,9 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.ui.mouse_press_event(event)
     
     def update_cita(self):
-        cliente = self.cliente_lineEdit.text()
-        barbero = self.barbero_lineEdit.text()
+
+        cliente = self.leave_id_alone_cliente()
+        barbero = self.leave_id_alone_barbero()
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
@@ -40,7 +41,6 @@ class EditWindowForm(QWidget,AddEditMenu):
         estado = self.estado_comboBox.currentText()
         img= f"images\{self.imagen_lineEdit.text()}" ############
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
-        #borrar despues
 
         data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
                 servicios_programados, estado, img)
@@ -50,6 +50,7 @@ class EditWindowForm(QWidget,AddEditMenu):
             print("CITA EDITADA")
             self.parent.set_table_data()
             self.close
+
     ############################COMBOBOX SETTERS###################################
             
     def set_current_pago_cb(self, text):
@@ -60,15 +61,22 @@ class EditWindowForm(QWidget,AddEditMenu):
         text_index= self.estado_comboBox.findText(text)
         self.estado_comboBox.setCurrentIndex(text_index)
 
+    def set_current_empleado_cb(self, text):
+        text_index= self.barbero_comboBox.findText(text)
+        self.barbero_comboBox.setCurrentIndex(text_index)
+    
+    def set_current_cliente_cb(self, text):
+        text_index= self.cliente_comboBox.findText(text)
+        self.cliente_comboBox.setCurrentIndex(text_index)
+
     ##############################################################################
         
     def fill_inputs(self):
         data = citas.select_by_id(self.cita_id)
 
         
-        self.cliente_lineEdit.setText(str(data[1]))
-        self.barbero_lineEdit.setText (str(data[2]))
-        #self.fechahora_dateTimeEdit.setTime(data[3])
+        self.set_current_cliente_cb(str(data[1]))
+        self.set_current_empleado_cb(str(data[2]))
         fecha_hora_db = data[3]
 
         if isinstance(fecha_hora_db, datetime.datetime):
@@ -101,3 +109,15 @@ class EditWindowForm(QWidget,AddEditMenu):
             images = citas.contrast_img(self.old_image)
             os.remove ("images\\" + self.old_image)
             shutil.copy(self.img_path_from, "images")
+
+    def leave_id_alone_cliente(self):        
+        cliente_id = str(self.cliente_comboBox.currentText())
+        id = int(cliente_id.split(' ')[0])
+        print(type(id))
+        return id
+
+    def leave_id_alone_barbero(self):        
+        barbero_id = str(self.barbero_comboBox.currentText())
+        id = int(barbero_id.split(' ')[0])
+        print(type(id))
+        return id

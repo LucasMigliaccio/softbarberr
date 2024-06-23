@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QFileDialog
 from PySide6.QtCore import Qt
 
-from views.add_edit_cita_fecha import AddEditMenu
+from views.add_edit_cita_cb import AddEditMenu
 
 from views.general_custom_ui import GeneralCustomUi
 
@@ -31,8 +31,8 @@ class AddWindowForm(QWidget, AddEditMenu):
         self.ui.mouse_press_event(event)
 
     def add_cita(self):
-        cliente = self.cliente_lineEdit.text()
-        barbero = self.barbero_lineEdit.text()
+        cliente = self.cliente_comboBox.currentText()
+        barbero = self.barbero_comboBox.currentText()
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
@@ -62,8 +62,8 @@ class AddWindowForm(QWidget, AddEditMenu):
 
     def clear_inputs(self):
         self.fechahora_dateTimeEdit.clear()
-        self.barbero_lineEdit.clear()
-        self.cliente_lineEdit.clear()
+        self.barbero_comboBox.clear()
+        self.cliente_comboBox.clear()
         self.monto_lineEdit.clear()
         self.pago_comboBox.clear()
         self.estado_comboBox.clear()

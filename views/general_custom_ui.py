@@ -1,6 +1,7 @@
 from PySide6.QtCore import Qt
 
 from PySide6.QtWidgets import QGraphicsDropShadowEffect
+from database import empleados, clientes
 
 estado_data = (
     "pendiente",
@@ -13,6 +14,15 @@ pago_data = (
     "Mercado Pago",
     "Transferencia Bancaria"
 )
+
+data_cb= empleados.comboBox_empleados()
+lista_formateada = [f"{id} ) {nombre}" for id, nombre in data_cb]
+empleados_data= tuple(lista_formateada)
+
+data_cb_cliente= clientes.comboBox_clientes()
+lista_formateada = [f"{id} ) {nombre}" for id, nombre in data_cb_cliente]
+clientes_data= tuple(lista_formateada)
+
 class GeneralCustomUi():
     def __init__(self, ui):
         self.ui= ui
@@ -73,3 +83,5 @@ class GeneralCustomUi():
     def fill_estado_cb(self):
         self.ui.estado_comboBox.addItems(estado_data)
         self.ui.pago_comboBox.addItems(pago_data)
+        self.ui.cliente_comboBox.addItems(clientes_data)
+        self.ui.barbero_comboBox.addItems(empleados_data)

@@ -7,6 +7,6 @@ from views.general_custom_ui import GeneralCustomUi
 
 from database import empleados
 
-data_cb= empleados.select_barber_cb_nombre()
+data_cb= empleados.comboBox_empleados()
 lista_formateada = [f"{id} ) {nombre}" for id, nombre in data_cb]
 print (tuple(lista_formateada))

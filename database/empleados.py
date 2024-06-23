@@ -105,3 +105,18 @@ def delete(_id):
     finally:
         cur.close()
         conn.close()
+
+def comboBox_empleados():
+    conn= create_connection()
+    sql ="""SELECT EmpleadoID, Nombre FROM empleados"""
+    try:
+        cur= conn.cursor()
+        cur.execute(sql)
+        citas=cur.fetchall()
+        return citas
+    except connector.Error as err:
+        print(f"Error at comboBox_empleados function: {err.msg}")
+        return False
+    finally:
+        cur.close()
+        conn.close()
