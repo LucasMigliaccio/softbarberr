@@ -91,6 +91,10 @@ class MainWindowForm(QWidget, MainWindow):
                     self.infopedidos_table.setCellWidget(
                         index_row, index_cell, components.CitaImg(cell)
                     )
+                elif index_cell == 4:
+                    self.infopedidos_table.setItem(
+                        index_row, index_cell, QTableWidgetItem("$ "+ str(cell))
+                    )
                 else:
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem(str(cell))

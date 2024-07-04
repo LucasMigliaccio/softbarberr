@@ -15,10 +15,10 @@ class MainWindow(QWidget):
 
         # Tabla para mostrar el calendario semanal
         self.table = QTableWidget()
-        self.table.setRowCount(7)  # 7 filas para los días de la semana
-        self.table.setColumnCount(24)  # 24 columnas para las horas del día
+        self.table.setRowCount(6)  # 7 filas para los días de la semana len empleados
+        self.table.setColumnCount(7)  # 24 columnas para las horas del día
         self.table.setHorizontalHeaderLabels(["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"])  # Encabezados de las columnas
-        self.table.setVerticalHeaderLabels("Juan", "María", "Pedro", "Ana", "Carlos", "Laura")  # Encabezados de las filas
+        self.table.setVerticalHeaderLabels(["Juan", "María", "Pedro", "Ana", "Carlos", "Laura"])  # Encabezados de las filas
         self.layout.addWidget(self.table)
 
         # Botón para guardar los horarios

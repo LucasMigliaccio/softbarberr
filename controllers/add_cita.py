@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt
 from views.add_edit_cita_cb import AddEditMenu
 
 from views.general_custom_ui import GeneralCustomUi
+from controllers.add_empleado import AddEmpleadoForm
 
 from database import citas
 import shutil
@@ -22,10 +23,14 @@ class AddWindowForm(QWidget, AddEditMenu):
 
         self.add_edit_button.setText("AGREGAR")
         self.cancel_button.clicked.connect(self.close)
-        
+        self.pushButton_img_3.clicked.connect(AddEmpleadoForm.add_empleado)
+
+
         self.add_edit_button.clicked.connect(self.add_cita)
         self.pushButton_img.clicked.connect(self.select_img)
         self.fechahora_dateTimeEdit.setDateTime(datetime.datetime.now())
+        
+
 
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
