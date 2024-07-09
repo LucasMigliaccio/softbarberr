@@ -4,8 +4,7 @@ from PySide6.QtCore import Qt
 from views.add_edit_cita_cb import AddEditMenu
 
 from views.general_custom_ui import GeneralCustomUi
-from controllers.add_empleado import AddEmpleadoForm
-
+from controllers.view_empleado import ViewEmpleadoWindowForm
 from database import citas
 import shutil
 import datetime
@@ -23,7 +22,7 @@ class AddWindowForm(QWidget, AddEditMenu):
 
         self.add_edit_button.setText("AGREGAR")
         self.cancel_button.clicked.connect(self.close)
-        self.pushButton_img_3.clicked.connect(AddEmpleadoForm.add_empleado)
+        self.pushButton_img_3.clicked.connect(self.open_empleados_view)
 
 
         self.add_edit_button.clicked.connect(self.add_cita)
@@ -72,3 +71,7 @@ class AddWindowForm(QWidget, AddEditMenu):
         self.monto_lineEdit.clear()
         self.pago_comboBox.clear()
         self.estado_comboBox.clear()
+
+    def open_empleados_view(self):
+        window = ViewEmpleadoWindowForm(self)
+        window.show()

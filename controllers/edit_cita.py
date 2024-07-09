@@ -26,7 +26,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.add_edit_button.setText("EDITAR")
         self.add_edit_button.clicked.connect(self.update_cita)
         self.pushButton_img.clicked.connect(self.select_img)
-
+        self.pushButton_img_3.clicked.connect(self.MainWindowForm.open_empleados_view)
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
     
