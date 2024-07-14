@@ -5,6 +5,9 @@ from PySide6.QtCore import Qt, QDateTime
 from views.add_edit_cita_cb import AddEditMenu
 from views.general_custom_ui import GeneralCustomUi
 
+from controllers.view_empleado import ViewEmpleadoWindowForm
+from controllers.view_cliente import ViewClienteWindowForm
+
 from database import citas
 
 import os 
@@ -26,7 +29,9 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.add_edit_button.setText("EDITAR")
         self.add_edit_button.clicked.connect(self.update_cita)
         self.pushButton_img.clicked.connect(self.select_img)
-        self.pushButton_img_3.clicked.connect(self.MainWindowForm.open_empleados_view)
+        self.pushButton_img_3.clicked.connect(self.open_empleados_view)
+        self.pushButton_img_2.clicked.connect(self.open_clientes_view)
+
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
     
@@ -121,3 +126,11 @@ class EditWindowForm(QWidget,AddEditMenu):
         id = int(barbero_id.split(' ')[0])
         print(type(id))
         return id
+    
+    def open_empleados_view(self):
+        window = ViewEmpleadoWindowForm(self)
+        window.show()
+
+    def open_clientes_view(self):
+        window = ViewClienteWindowForm(self)
+        window.show()

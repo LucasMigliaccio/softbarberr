@@ -20,6 +20,7 @@ class AddEmpleadoForm(QWidget, AddEditEmpleado):
         
         self.add_edit_button.clicked.connect(self.add_empleado)
         self.cancel_button.clicked.connect(self.close)
+        self.pushButton_img_3.clicked.connect(self.open_empleados_view)
 
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
