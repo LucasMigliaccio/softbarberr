@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>608</height>
+    <height>750</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -280,7 +280,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <widget class="QLabel" name="pedido_tittle_6">
+                <widget class="QLabel" name="nombre_tittle">
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -324,7 +324,44 @@ border: 1px solid #cbcbcb
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pedido_tittle_7">
+                <widget class="QLabel" name="codigo_tittle">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Black</family>
+                   <pointsize>14</pointsize>
+                   <weight>75</weight>
+                   <italic>true</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(230, 230, 230);</string>
+                 </property>
+                 <property name="text">
+                  <string>CODIGO</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="codigo_lineEdit">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);
+border: 1px solid #cbcbcb
+</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="descripcion_tittle">
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -362,7 +399,7 @@ border: 1px solid #cbcbcb
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pedido_tittle_5">
+                <widget class="QLabel" name="precio_tittle">
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -399,7 +436,7 @@ border: 1px solid #cbcbcb
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pedido_tittle_8">
+                <widget class="QLabel" name="stock_tittle">
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -422,6 +459,43 @@ border: 1px solid #cbcbcb
                </item>
                <item>
                 <widget class="QLineEdit" name="stock_lineEdit">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);
+border: 1px solid #cbcbcb
+</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="codigobarra_title">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Black</family>
+                   <pointsize>14</pointsize>
+                   <weight>75</weight>
+                   <italic>true</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(230, 230, 230);</string>
+                 </property>
+                 <property name="text">
+                  <string>CODIGO DE BARRA</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="codigobarra_lineEdit">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
