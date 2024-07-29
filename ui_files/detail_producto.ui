@@ -285,7 +285,7 @@ color: rgb(189, 189, 189);</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_3">
+              <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QFrame" name="frame">
                  <property name="frameShape">
@@ -294,9 +294,9 @@ color: rgb(189, 189, 189);</string>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
                   <item>
-                   <widget class="QFrame" name="frame_12">
+                   <widget class="QFrame" name="frame_nombre">
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -408,7 +408,7 @@ font: 12pt &quot;impact&quot;;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QFrame" name="frame_3">
+                   <widget class="QFrame" name="frame_stockprecio">
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -520,7 +520,119 @@ font: 12pt &quot;impact&quot;;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QFrame" name="frame_7">
+                   <widget class="QFrame" name="frame_codigos">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_2">
+                     <item>
+                      <widget class="QFrame" name="frame_code">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_9">
+                        <item>
+                         <widget class="QLabel" name="codigo_tittle">
+                          <property name="font">
+                           <font>
+                            <family>Algerian</family>
+                            <pointsize>18</pointsize>
+                            <weight>50</weight>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(230, 230, 230);
+font: 18pt &quot;Algerian&quot;;</string>
+                          </property>
+                          <property name="text">
+                           <string>CODIGO</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="codigo_label">
+                          <property name="styleSheet">
+                           <string notr="true">color: white;
+font-size: 12px;
+font: 12pt &quot;impact&quot;;</string>
+                          </property>
+                          <property name="text">
+                           <string>TextLabel</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_barras">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_10">
+                        <item>
+                         <widget class="QLabel" name="codigobarras_tittle">
+                          <property name="font">
+                           <font>
+                            <family>Algerian</family>
+                            <pointsize>18</pointsize>
+                            <weight>50</weight>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(230, 230, 230);
+font: 18pt &quot;Algerian&quot;;</string>
+                          </property>
+                          <property name="text">
+                           <string>CODIGO DE BARRAS</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="codigobarras_label">
+                          <property name="styleSheet">
+                           <string notr="true">color: white;
+font-size: 12px;
+font: 12pt &quot;impact&quot;;</string>
+                          </property>
+                          <property name="text">
+                           <string>TextLabel</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_descripcion">
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -528,6 +640,21 @@ font: 12pt &quot;impact&quot;;</string>
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>9</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>9</number>
+                     </property>
                      <item>
                       <widget class="QFrame" name="frame_10">
                        <property name="frameShape">
