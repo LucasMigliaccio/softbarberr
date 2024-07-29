@@ -3,8 +3,8 @@ from database.connection import create_connection
 
 def insert(data):
     conn= create_connection()
-    sql = """INSERT INTO productos (NombreDelProducto, Descripcion, Precio, CantidadEnStock )
-            VALUES(%s,%s,%s,%s)
+    sql = """INSERT INTO productos (NombreDelProducto, Descripcion, Precio, CantidadEnStock, Codigo, CodigoDeBarra)
+            VALUES(%s,%s,%s,%s,%s,%s)
             """
     try:
         cur= conn.cursor()
@@ -35,7 +35,7 @@ def select_by_id(_id):
 
 def select_all():
     conn= create_connection()
-    sql= """SELECT ProductoID, NombreDelProducto, Descripcion, Precio, CantidadEnStock FROM productos"""
+    sql= """SELECT ProductoID, NombreDelProducto, Descripcion, Precio, CantidadEnStock, Codigo, CodigoDeBarra FROM productos"""
     try:
         cur = conn.cursor()
         cur.execute(sql)
@@ -54,7 +54,9 @@ def update(_id,data):
             NombreDelProducto = %s,
             Descripcion = %s,
             Precio = %s, 
-            CantidadEnStock = %s
+            CantidadEnStock = %s,
+            Codigo = %s,
+            CodigoDeBarra= %s
         WHERE ProductoID = {_id}
             """
     try:
@@ -72,7 +74,7 @@ def update(_id,data):
 def select_by_parameter(param):
     conn= create_connection()
     param= f"%{param}%"
-    sql = """SELECT ProductoID, NombreDelProducto, Descripcion, Precio, CantidadEnStock 
+    sql = """SELECT ProductoID, NombreDelProducto, Descripcion, Precio, CantidadEnStock, Codigo, CodigoDeBarra
         FROM productos
         WHERE NombreDelProducto LIKE %s OR CantidadEnStock LIKE %s"""
     try:

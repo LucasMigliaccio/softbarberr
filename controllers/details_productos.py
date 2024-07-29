@@ -31,6 +31,8 @@ class DetailWindowProductoForm(QWidget,DetailProducto):
         descripcion =data[2]
         precio =data[3]
         stock =data[4]
+        codigo =data[5]
+        codigo_barras =data[6]
 
 
         self.idproducto_label.setText(str(id))
@@ -38,3 +40,5 @@ class DetailWindowProductoForm(QWidget,DetailProducto):
         self.descripcion_plainTextEdit.setPlainText(str(descripcion))
         self.numero_label.setText(str(precio))
         self.stock_label.setText(str(stock))
+        self.codigo_label.setText(str(codigo))
+        self.codigobarras_label.setText(str(codigo_barras))

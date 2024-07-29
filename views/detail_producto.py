@@ -121,21 +121,21 @@ class DetailProducto(object):
         self.frame_inferior.setMaximumSize(QSize(16777215, 16777215))
         self.frame_inferior.setFrameShape(QFrame.StyledPanel)
         self.frame_inferior.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.frame_inferior)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_4 = QVBoxLayout(self.frame_inferior)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.frame = QFrame(self.frame_inferior)
         self.frame.setObjectName(u"frame")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_4 = QVBoxLayout(self.frame)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.frame_12 = QFrame(self.frame)
-        self.frame_12.setObjectName(u"frame_12")
-        self.frame_12.setFrameShape(QFrame.StyledPanel)
-        self.frame_12.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_4 = QHBoxLayout(self.frame_12)
+        self.verticalLayout_3 = QVBoxLayout(self.frame)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.frame_nombre = QFrame(self.frame)
+        self.frame_nombre.setObjectName(u"frame_nombre")
+        self.frame_nombre.setFrameShape(QFrame.StyledPanel)
+        self.frame_nombre.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.frame_nombre)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.frame_13 = QFrame(self.frame_12)
+        self.frame_13 = QFrame(self.frame_nombre)
         self.frame_13.setObjectName(u"frame_13")
         self.frame_13.setFrameShape(QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QFrame.Raised)
@@ -167,7 +167,7 @@ class DetailProducto(object):
 
         self.horizontalLayout_4.addWidget(self.frame_13)
 
-        self.frame_14 = QFrame(self.frame_12)
+        self.frame_14 = QFrame(self.frame_nombre)
         self.frame_14.setObjectName(u"frame_14")
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
@@ -195,15 +195,15 @@ class DetailProducto(object):
         self.horizontalLayout_4.addWidget(self.frame_14)
 
 
-        self.verticalLayout_4.addWidget(self.frame_12)
+        self.verticalLayout_3.addWidget(self.frame_nombre)
 
-        self.frame_3 = QFrame(self.frame)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setFrameShape(QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.frame_3)
+        self.frame_stockprecio = QFrame(self.frame)
+        self.frame_stockprecio.setObjectName(u"frame_stockprecio")
+        self.frame_stockprecio.setFrameShape(QFrame.StyledPanel)
+        self.frame_stockprecio.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout = QHBoxLayout(self.frame_stockprecio)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.frame_4 = QFrame(self.frame_3)
+        self.frame_4 = QFrame(self.frame_stockprecio)
         self.frame_4.setObjectName(u"frame_4")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
@@ -230,7 +230,7 @@ class DetailProducto(object):
 
         self.horizontalLayout.addWidget(self.frame_4)
 
-        self.frame_6 = QFrame(self.frame_3)
+        self.frame_6 = QFrame(self.frame_stockprecio)
         self.frame_6.setObjectName(u"frame_6")
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
@@ -258,15 +258,80 @@ class DetailProducto(object):
         self.horizontalLayout.addWidget(self.frame_6)
 
 
-        self.verticalLayout_4.addWidget(self.frame_3)
+        self.verticalLayout_3.addWidget(self.frame_stockprecio)
 
-        self.frame_7 = QFrame(self.frame)
-        self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setFrameShape(QFrame.StyledPanel)
-        self.frame_7.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_7)
+        self.frame_codigos = QFrame(self.frame)
+        self.frame_codigos.setObjectName(u"frame_codigos")
+        self.frame_codigos.setFrameShape(QFrame.StyledPanel)
+        self.frame_codigos.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.frame_codigos)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.frame_code = QFrame(self.frame_codigos)
+        self.frame_code.setObjectName(u"frame_code")
+        self.frame_code.setFrameShape(QFrame.StyledPanel)
+        self.frame_code.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_9 = QVBoxLayout(self.frame_code)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.codigo_tittle = QLabel(self.frame_code)
+        self.codigo_tittle.setObjectName(u"codigo_tittle")
+        self.codigo_tittle.setFont(font1)
+        self.codigo_tittle.setStyleSheet(u"color: rgb(230, 230, 230);\n"
+"font: 18pt \"Algerian\";")
+        self.codigo_tittle.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_9.addWidget(self.codigo_tittle)
+
+        self.codigo_label = QLabel(self.frame_code)
+        self.codigo_label.setObjectName(u"codigo_label")
+        self.codigo_label.setStyleSheet(u"color: white;\n"
+"font-size: 12px;\n"
+"font: 12pt \"impact\";")
+        self.codigo_label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_9.addWidget(self.codigo_label)
+
+
+        self.horizontalLayout_2.addWidget(self.frame_code)
+
+        self.frame_barras = QFrame(self.frame_codigos)
+        self.frame_barras.setObjectName(u"frame_barras")
+        self.frame_barras.setFrameShape(QFrame.StyledPanel)
+        self.frame_barras.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_10 = QVBoxLayout(self.frame_barras)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.codigobarras_tittle = QLabel(self.frame_barras)
+        self.codigobarras_tittle.setObjectName(u"codigobarras_tittle")
+        self.codigobarras_tittle.setFont(font1)
+        self.codigobarras_tittle.setStyleSheet(u"color: rgb(230, 230, 230);\n"
+"font: 18pt \"Algerian\";")
+        self.codigobarras_tittle.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_10.addWidget(self.codigobarras_tittle)
+
+        self.codigobarras_label = QLabel(self.frame_barras)
+        self.codigobarras_label.setObjectName(u"codigobarras_label")
+        self.codigobarras_label.setStyleSheet(u"color: white;\n"
+"font-size: 12px;\n"
+"font: 12pt \"impact\";")
+        self.codigobarras_label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_10.addWidget(self.codigobarras_label)
+
+
+        self.horizontalLayout_2.addWidget(self.frame_barras)
+
+
+        self.verticalLayout_3.addWidget(self.frame_codigos)
+
+        self.frame_descripcion = QFrame(self.frame)
+        self.frame_descripcion.setObjectName(u"frame_descripcion")
+        self.frame_descripcion.setFrameShape(QFrame.StyledPanel)
+        self.frame_descripcion.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.frame_descripcion)
+        self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.frame_10 = QFrame(self.frame_7)
+        self.horizontalLayout_3.setContentsMargins(0, 9, 0, 9)
+        self.frame_10 = QFrame(self.frame_descripcion)
         self.frame_10.setObjectName(u"frame_10")
         self.frame_10.setFrameShape(QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QFrame.Raised)
@@ -304,10 +369,10 @@ class DetailProducto(object):
         self.horizontalLayout_3.addWidget(self.frame_10)
 
 
-        self.verticalLayout_4.addWidget(self.frame_7)
+        self.verticalLayout_3.addWidget(self.frame_descripcion)
 
 
-        self.verticalLayout_3.addWidget(self.frame)
+        self.verticalLayout_4.addWidget(self.frame)
 
         self.add_edit_button_2 = QPushButton(self.frame_inferior)
         self.add_edit_button_2.setObjectName(u"add_edit_button_2")
@@ -331,7 +396,7 @@ class DetailProducto(object):
 "\n"
 "")
 
-        self.verticalLayout_3.addWidget(self.add_edit_button_2)
+        self.verticalLayout_4.addWidget(self.add_edit_button_2)
 
 
         self.verticalLayout_7.addWidget(self.frame_inferior)
@@ -366,6 +431,10 @@ class DetailProducto(object):
         self.numero_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
         self.pedido_tittle_5.setText(QCoreApplication.translate("add_edit_menu", u"CANTIDAD DE STOCK", None))
         self.stock_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
+        self.codigo_tittle.setText(QCoreApplication.translate("add_edit_menu", u"CODIGO", None))
+        self.codigo_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
+        self.codigobarras_tittle.setText(QCoreApplication.translate("add_edit_menu", u"CODIGO DE BARRAS", None))
+        self.codigobarras_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
         self.pedido_tittle_8.setText(QCoreApplication.translate("add_edit_menu", u"DESCRIPCI\u00d3N", None))
         self.add_edit_button_2.setText(QCoreApplication.translate("add_edit_menu", u"SALIR", None))
     # retranslateUi

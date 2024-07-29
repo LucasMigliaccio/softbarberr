@@ -23,7 +23,7 @@ class AddEditProducto(object):
     def setupUi(self, add_edit_cliente):
         if not add_edit_cliente.objectName():
             add_edit_cliente.setObjectName(u"add_edit_cliente")
-        add_edit_cliente.resize(600, 608)
+        add_edit_cliente.resize(600, 750)
         add_edit_cliente.setMinimumSize(QSize(600, 0))
         add_edit_cliente.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout = QVBoxLayout(add_edit_cliente)
@@ -121,21 +121,21 @@ class AddEditProducto(object):
         self.frame_inferior.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame_inferior)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.pedido_tittle_6 = QLabel(self.frame_inferior)
-        self.pedido_tittle_6.setObjectName(u"pedido_tittle_6")
+        self.nombre_tittle = QLabel(self.frame_inferior)
+        self.nombre_tittle.setObjectName(u"nombre_tittle")
         font1 = QFont()
         font1.setFamilies([u"Segoe UI Black"])
         font1.setPointSize(14)
         font1.setBold(True)
         font1.setItalic(True)
         font1.setUnderline(False)
-        self.pedido_tittle_6.setFont(font1)
-        self.pedido_tittle_6.setLayoutDirection(Qt.LeftToRight)
-        self.pedido_tittle_6.setStyleSheet(u"color: rgb(230, 230, 230);")
-        self.pedido_tittle_6.setTextFormat(Qt.AutoText)
-        self.pedido_tittle_6.setAlignment(Qt.AlignCenter)
+        self.nombre_tittle.setFont(font1)
+        self.nombre_tittle.setLayoutDirection(Qt.LeftToRight)
+        self.nombre_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
+        self.nombre_tittle.setTextFormat(Qt.AutoText)
+        self.nombre_tittle.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.pedido_tittle_6)
+        self.verticalLayout_3.addWidget(self.nombre_tittle)
 
         self.nombre_lineEdit = QLineEdit(self.frame_inferior)
         self.nombre_lineEdit.setObjectName(u"nombre_lineEdit")
@@ -146,15 +146,37 @@ class AddEditProducto(object):
 
         self.verticalLayout_3.addWidget(self.nombre_lineEdit)
 
-        self.pedido_tittle_7 = QLabel(self.frame_inferior)
-        self.pedido_tittle_7.setObjectName(u"pedido_tittle_7")
-        self.pedido_tittle_7.setFont(font1)
-        self.pedido_tittle_7.setLayoutDirection(Qt.LeftToRight)
-        self.pedido_tittle_7.setStyleSheet(u"color: rgb(230, 230, 230);")
-        self.pedido_tittle_7.setTextFormat(Qt.AutoText)
-        self.pedido_tittle_7.setAlignment(Qt.AlignCenter)
+        self.codigo_tittle = QLabel(self.frame_inferior)
+        self.codigo_tittle.setObjectName(u"codigo_tittle")
+        font2 = QFont()
+        font2.setFamilies([u"Segoe UI Black"])
+        font2.setPointSize(14)
+        font2.setBold(True)
+        font2.setItalic(True)
+        self.codigo_tittle.setFont(font2)
+        self.codigo_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
+        self.codigo_tittle.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.pedido_tittle_7)
+        self.verticalLayout_3.addWidget(self.codigo_tittle)
+
+        self.codigo_lineEdit = QLineEdit(self.frame_inferior)
+        self.codigo_lineEdit.setObjectName(u"codigo_lineEdit")
+        self.codigo_lineEdit.setMinimumSize(QSize(0, 30))
+        self.codigo_lineEdit.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 1px solid #cbcbcb\n"
+"")
+
+        self.verticalLayout_3.addWidget(self.codigo_lineEdit)
+
+        self.descripcion_tittle = QLabel(self.frame_inferior)
+        self.descripcion_tittle.setObjectName(u"descripcion_tittle")
+        self.descripcion_tittle.setFont(font1)
+        self.descripcion_tittle.setLayoutDirection(Qt.LeftToRight)
+        self.descripcion_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
+        self.descripcion_tittle.setTextFormat(Qt.AutoText)
+        self.descripcion_tittle.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.descripcion_tittle)
 
         self.descripcion_plainTextEdit = QPlainTextEdit(self.frame_inferior)
         self.descripcion_plainTextEdit.setObjectName(u"descripcion_plainTextEdit")
@@ -164,18 +186,13 @@ class AddEditProducto(object):
 
         self.verticalLayout_3.addWidget(self.descripcion_plainTextEdit)
 
-        self.pedido_tittle_5 = QLabel(self.frame_inferior)
-        self.pedido_tittle_5.setObjectName(u"pedido_tittle_5")
-        font2 = QFont()
-        font2.setFamilies([u"Segoe UI Black"])
-        font2.setPointSize(14)
-        font2.setBold(True)
-        font2.setItalic(True)
-        self.pedido_tittle_5.setFont(font2)
-        self.pedido_tittle_5.setStyleSheet(u"color: rgb(230, 230, 230);")
-        self.pedido_tittle_5.setAlignment(Qt.AlignCenter)
+        self.precio_tittle = QLabel(self.frame_inferior)
+        self.precio_tittle.setObjectName(u"precio_tittle")
+        self.precio_tittle.setFont(font2)
+        self.precio_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
+        self.precio_tittle.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.pedido_tittle_5)
+        self.verticalLayout_3.addWidget(self.precio_tittle)
 
         self.precio_lineEdit = QLineEdit(self.frame_inferior)
         self.precio_lineEdit.setObjectName(u"precio_lineEdit")
@@ -186,13 +203,13 @@ class AddEditProducto(object):
 
         self.verticalLayout_3.addWidget(self.precio_lineEdit)
 
-        self.pedido_tittle_8 = QLabel(self.frame_inferior)
-        self.pedido_tittle_8.setObjectName(u"pedido_tittle_8")
-        self.pedido_tittle_8.setFont(font2)
-        self.pedido_tittle_8.setStyleSheet(u"color: rgb(230, 230, 230);")
-        self.pedido_tittle_8.setAlignment(Qt.AlignCenter)
+        self.stock_tittle = QLabel(self.frame_inferior)
+        self.stock_tittle.setObjectName(u"stock_tittle")
+        self.stock_tittle.setFont(font2)
+        self.stock_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
+        self.stock_tittle.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.pedido_tittle_8)
+        self.verticalLayout_3.addWidget(self.stock_tittle)
 
         self.stock_lineEdit = QLineEdit(self.frame_inferior)
         self.stock_lineEdit.setObjectName(u"stock_lineEdit")
@@ -202,6 +219,23 @@ class AddEditProducto(object):
 "")
 
         self.verticalLayout_3.addWidget(self.stock_lineEdit)
+
+        self.codigobarra_title = QLabel(self.frame_inferior)
+        self.codigobarra_title.setObjectName(u"codigobarra_title")
+        self.codigobarra_title.setFont(font2)
+        self.codigobarra_title.setStyleSheet(u"color: rgb(230, 230, 230);")
+        self.codigobarra_title.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.codigobarra_title)
+
+        self.codigobarra_lineEdit = QLineEdit(self.frame_inferior)
+        self.codigobarra_lineEdit.setObjectName(u"codigobarra_lineEdit")
+        self.codigobarra_lineEdit.setMinimumSize(QSize(0, 30))
+        self.codigobarra_lineEdit.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 1px solid #cbcbcb\n"
+"")
+
+        self.verticalLayout_3.addWidget(self.codigobarra_lineEdit)
 
         self.add_edit_button = QPushButton(self.frame_inferior)
         self.add_edit_button.setObjectName(u"add_edit_button")
@@ -271,10 +305,12 @@ class AddEditProducto(object):
         self.restore_button.setText(QCoreApplication.translate("add_edit_cliente", u"...", None))
         self.maximize_button.setText(QCoreApplication.translate("add_edit_cliente", u"...", None))
         self.close_button.setText(QCoreApplication.translate("add_edit_cliente", u"...", None))
-        self.pedido_tittle_6.setText(QCoreApplication.translate("add_edit_cliente", u"NOMBRE", None))
-        self.pedido_tittle_7.setText(QCoreApplication.translate("add_edit_cliente", u"DESCRIPCI\u00d3N", None))
-        self.pedido_tittle_5.setText(QCoreApplication.translate("add_edit_cliente", u"PRECIO", None))
-        self.pedido_tittle_8.setText(QCoreApplication.translate("add_edit_cliente", u"CANTIDAD DE STOCK", None))
+        self.nombre_tittle.setText(QCoreApplication.translate("add_edit_cliente", u"NOMBRE", None))
+        self.codigo_tittle.setText(QCoreApplication.translate("add_edit_cliente", u"CODIGO", None))
+        self.descripcion_tittle.setText(QCoreApplication.translate("add_edit_cliente", u"DESCRIPCI\u00d3N", None))
+        self.precio_tittle.setText(QCoreApplication.translate("add_edit_cliente", u"PRECIO", None))
+        self.stock_tittle.setText(QCoreApplication.translate("add_edit_cliente", u"CANTIDAD DE STOCK", None))
+        self.codigobarra_title.setText(QCoreApplication.translate("add_edit_cliente", u"CODIGO DE BARRA", None))
         self.add_edit_button.setText(QCoreApplication.translate("add_edit_cliente", u"AGREGAR/ACTUALIZAR", None))
         self.cancel_button.setText(QCoreApplication.translate("add_edit_cliente", u"CANCELAR", None))
     # retranslateUi

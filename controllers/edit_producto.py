@@ -35,8 +35,10 @@ class EditWindowProductoForm(QWidget,AddEditProducto):
         descripcion = self.descripcion_plainTextEdit.toPlainText()
         precio  =self.precio_lineEdit.text()
         stock = self.stock_lineEdit.text()
+        codigo =self.codigo_lineEdit.text()
+        codigo_de_barra =self.codigobarra_lineEdit.text()
 
-        data = (nombre, descripcion, precio, stock) 
+        data = (nombre, descripcion, precio, stock, codigo, codigo_de_barra) 
         if productos.update(self.producto_id, data):
             print("PRODUCTO EDITADO")
             self.parent.set_table_data()
@@ -49,3 +51,5 @@ class EditWindowProductoForm(QWidget,AddEditProducto):
         self.descripcion_plainTextEdit.setPlainText(str(data[2]))
         self.precio_lineEdit.setText(str(data[3]))
         self.stock_lineEdit.setText(str(data[4]))
+        self.codigo_lineEdit.setText(str(data[5]))
+        self.codigobarra_lineEdit.setText(str(data[6]))
