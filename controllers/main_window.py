@@ -11,6 +11,7 @@ from controllers.add_cita import AddWindowForm
 from controllers.edit_cita import EditWindowForm
 from controllers.details_cita import DetailWindowForm
 from controllers.horarios import ViewHorariosForm
+from controllers.recuento import RecuentoForm
 
 from controllers.view_cliente import ViewClienteWindowForm
 from controllers.view_empleado import ViewEmpleadoWindowForm
@@ -32,6 +33,7 @@ class MainWindowForm(QWidget, MainWindow):
         self.search_line_edit.textChanged.connect(self.restore_table_data)
         self.co_pushButton_pedidos.clicked.connect(self.open_horarios_window)
 
+        self.recuento_button.clicked.connect(self.open_recuento_view)
         self.op_pushButton_cliente.clicked.connect(self.open_clientes_view)
         self.co_pushButton_menu.clicked.connect(self.open_empleados_view)
         self.op_pushButton_menu.clicked.connect(self.open_productos_view)
@@ -62,7 +64,11 @@ class MainWindowForm(QWidget, MainWindow):
 
     def open_productos_view(self):
         window = ViewProductoWindowForm(self)
-        window.show()    
+        window.show()   
+
+    def open_recuento_view(self):
+        window = RecuentoForm(self)
+        window.show()   
 
     def config_table(self):
         column_label = ("ID","IMAGEN", "FECHA","CLIENTE(id)", "MONTO", "BARBERO(id)", "SERVICIOS", "TRANSACCIÓN","ESTADO","") 
