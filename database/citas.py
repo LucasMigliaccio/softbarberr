@@ -54,7 +54,7 @@ INNER JOIN
 
 def select_all():
     conn= create_connection()
-    sql = """SELECT citas.CitaID, citas.FechaHora, citas.ClienteID, citas.Monto, citas.EmpleadoID, citas.ServiciosProgramados, citas.MetodoPago, citas.Estado FROM citas ORDER BY FechaHora DESC"""
+    sql = """SELECT citas.CitaID, citas.img_path, citas.FechaHora, citas.ClienteID, citas.Monto, citas.EmpleadoID, citas.ServiciosProgramados, citas.MetodoPago, citas.Estado FROM citas ORDER BY FechaHora DESC"""
     try:
         cur= conn.cursor()
         cur.execute(sql)

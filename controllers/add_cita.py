@@ -39,8 +39,8 @@ class AddWindowForm(QWidget, AddEditMenu):
         self.ui.mouse_press_event(event)
 
     def add_cita(self):
-        cliente = self.cliente_comboBox.currentText()
-        barbero = self.barbero_comboBox.currentText()
+        cliente = self.leave_id_alone_cliente()
+        barbero = self.leave_id_alone_barbero()
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
@@ -48,7 +48,6 @@ class AddWindowForm(QWidget, AddEditMenu):
         estado = self.estado_comboBox.currentText()
         img= self.img_path_to
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
-        #borrar despues
 
         data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
                 servicios_programados, estado, img)
@@ -75,6 +74,18 @@ class AddWindowForm(QWidget, AddEditMenu):
         self.monto_lineEdit.clear()
         self.pago_comboBox.clear()
         self.estado_comboBox.clear()
+
+    def leave_id_alone_cliente(self):        
+        cliente_id = str(self.cliente_comboBox.currentText())
+        id = int(cliente_id.split(' ')[0])
+        print(type(id))
+        return id
+
+    def leave_id_alone_barbero(self):        
+        barbero_id = str(self.barbero_comboBox.currentText())
+        id = int(barbero_id.split(' ')[0])
+        print(type(id))
+        return id
 
     def open_empleados_view(self):
         window = ViewEmpleadoWindowForm(self)

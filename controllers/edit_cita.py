@@ -44,7 +44,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         metodo_pago = self.pago_comboBox.currentText()
         servicios_programados= self.servicio_lineEdit.text()
         estado = self.estado_comboBox.currentText()
-        img= f"images\{self.imagen_lineEdit.text()}" ############
+        img= f"images\{self.imagen_lineEdit.text()}"
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
 
         data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
@@ -67,6 +67,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.estado_comboBox.setCurrentIndex(text_index)
 
     def set_current_empleado_cb(self, text):
+        print(text)
         text_index= self.barbero_comboBox.findText(text)
         self.barbero_comboBox.setCurrentIndex(text_index)
     
