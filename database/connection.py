@@ -2,7 +2,7 @@ from mysql import connector
 
 config = {
     "user" : "root",
-    "password":"RammusWukong10.",
+    "password":"RammusWukong1.",
     "host": "localhost",
     "database": "barberiadb"
 }
