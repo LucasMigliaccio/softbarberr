@@ -113,8 +113,26 @@ class EditWindowForm(QWidget,AddEditMenu):
     def replace_img(self):
         if self.old_image != self.new_img:
             images = citas.contrast_img(self.old_image)
-            os.remove ("images\\" + self.old_image)
-            shutil.copy(self.img_path_from, "images")
+            
+            # Ruta de la imagen anterior
+            old_image_path = os.path.join("images", self.old_image)
+            
+            # Verifica si la imagen anterior existe antes de intentar eliminarla
+            if os.path.exists(old_image_path):
+                try:
+                    os.remove(old_image_path)
+                    print(f"Imagen '{self.old_image}' eliminada correctamente.")
+                except Exception as e:
+                    print(f"No se pudo eliminar la imagen '{self.old_image}': {e}")
+            else:
+                print(f"Imagen '{self.old_image}' no encontrada, se omitió la eliminación.")
+            
+            # Copia la nueva imagen al directorio "images"
+            try:
+                shutil.copy(self.img_path_from, "images")
+                print(f"Imagen '{self.new_img}' copiada exitosamente.")
+            except Exception as e:
+                print(f"No se pudo copiar la imagen '{self.new_img}': {e}")
 
     def leave_id_alone_cliente(self):        
         cliente_id = str(self.cliente_comboBox.currentText())
