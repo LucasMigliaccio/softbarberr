@@ -247,7 +247,7 @@ color: rgb(189, 189, 189);</string>
             <item>
              <widget class="QFrame" name="frame_productos">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(55, 115, 255);</string>
+               <string notr="true">background-color: rgb(34, 34, 34);</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -255,6 +255,17 @@ color: rgb(189, 189, 189);</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QTableView" name="productos_tableView">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
             <item>
@@ -324,12 +335,19 @@ color: rgb(189, 189, 189);</string>
                 </spacer>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinBox">
+                <widget class="QSpinBox" name="contador_spinBox">
                  <property name="minimumSize">
                   <size>
                    <width>100</width>
                    <height>37</height>
                   </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(255, 255, 255);
@@ -354,7 +372,7 @@ border-radius: 10px;</string>
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="add_pushButton">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -367,6 +385,14 @@ border-radius: 10px;</string>
                    <height>40</height>
                   </size>
                  </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton {
 background-color: #7c7c7c;
@@ -374,8 +400,9 @@ color: white;
 }
 
 QPushButton:hover {
-background-color: rgb(194, 0, 0);
+background-color: rgb(11, 168, 16);
 }
+
 </string>
                  </property>
                  <property name="text">
@@ -389,13 +416,74 @@ background-color: rgb(194, 0, 0);
             <item>
              <widget class="QFrame" name="frame_carrito">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(71, 197, 255);</string>
+               <string notr="true">background-color: rgb(34, 34, 34);</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <property name="spacing">
+                <number>7</number>
+               </property>
+               <property name="leftMargin">
+                <number>11</number>
+               </property>
+               <property name="topMargin">
+                <number>11</number>
+               </property>
+               <property name="rightMargin">
+                <number>11</number>
+               </property>
+               <property name="bottomMargin">
+                <number>11</number>
+               </property>
+               <item>
+                <widget class="QTableView" name="carrito_tableView">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="add_edit_button">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Segoe UI Black</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <italic>true</italic>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+background-color: #7c7c7c;
+color: white;
+}
+
+QPushButton:hover {
+background-color: rgb(11, 168, 16);
+}
+
+
+</string>
+              </property>
+              <property name="text">
+               <string>AGREGAR PRODUCTO</string>
               </property>
              </widget>
             </item>

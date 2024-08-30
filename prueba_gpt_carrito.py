@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
     QHBoxLayout, QLabel, QSpinBox, QAbstractItemView, QMessageBox
 )
 from PySide6.QtCore import QAbstractTableModel, Qt
-
+from database import productos  # Asegúrate de que este módulo tiene acceso a tu base de datos y consulta
 
 class ProductTableModel(QAbstractTableModel):
     def __init__(self, products):
@@ -43,12 +43,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Carrito de Compras")
 
-        # Definir productos (ID, Nombre, Precio, Stock)
-        self.products = [
-            [1, "Producto A", 10.0, 5],
-            [2, "Producto B", 15.0, 3],
-            [3, "Producto C", 7.5, 8],
-        ]
+        # Cargar productos desde la base de datos
+        self.products = self.load_products_from_db()
 
         # Carrito vacío
         self.cart = []
@@ -89,6 +85,11 @@ class MainWindow(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
+    def load_products_from_db(self):
+        # Supongamos que tienes un método para obtener productos de la base de datos
+        product_list = productos.select_all()  # Este método debe devolver una lista de tuplas o listas
+        return [[p.ProductoID, p.NombreDelProducto, p.Precio, p.CantidadEnStock] for p in product_list]
+
     def add_to_cart(self):
         selected = self.product_table.selectionModel().selectedIndexes()
         if selected:
@@ -124,4 +125,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
