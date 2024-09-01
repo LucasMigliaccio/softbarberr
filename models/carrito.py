@@ -3,28 +3,28 @@ from PySide6.QtCore import QAbstractTableModel, Qt, QModelIndex
 class CarritoTableModel(QAbstractTableModel):
     def __init__(self, data=None, parent=None):
         super().__init__(parent)
-        self.data = data or []
+        self._headers = ["ID", "Producto", "Cantidad", "Precio", "Total"]  # Definir los nombres de las columnas
+        self._carrito = data or []  # Cambié 'self.data' a 'self._carrito' para evitar confusiones
 
     def rowCount(self, parent=QModelIndex()):
-        return len(self.data)
+        return len(self._carrito)
 
     def columnCount(self, parent=QModelIndex()):
-        return 5  # Número de columnas, ajusta según tus datos
+        return len(self._headers)  # Devuelve el número de columnas basado en los headers
 
     def data(self, index, role=Qt.DisplayRole):
         if not index.isValid():
             return None
         if role == Qt.DisplayRole:
-            return self.data[index.row()][index.column()]
+            return self._carrito[index.row()][index.column()]
         return None
-
 
     def headerData(self, section, orientation, role=Qt.DisplayRole):
         if role == Qt.DisplayRole:
             if orientation == Qt.Horizontal:
-                return self._headers[section]
+                return self._headers[section]  # Devuelve el nombre de la columna
             else:
-                return str(section + 1)
+                return str(section + 1)  # Devuelve el número de fila
         return None
 
     def add_to_cart(self, product, quantity):
