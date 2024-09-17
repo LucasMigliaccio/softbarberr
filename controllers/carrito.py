@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QFileDialog
+from PySide6.QtWidgets import QWidget, QFileDialog, QAbstractItemView
 from PySide6.QtCore import Qt
 from views.carritocompras import CarritoCompras
 from views.general_custom_ui import GeneralCustomUi
@@ -16,10 +16,14 @@ class CarritoForm(QWidget, CarritoCompras):
         self.setupUi(self)
         self.ui = GeneralCustomUi(self)
         self.setWindowFlag(Qt.Window)
+        self.productos_tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
 
         # Configura los modelos de tabla
         self.productos_model = ProductosTableModel(productos.select_all())
         self.carrito_model = CarritoTableModel([])  # Inicialmente vacío
+
+        #almacena las filas
+        self.filas_seleccionadas = []
 
         # Asocia los modelos a los QTableView
         self.productos_tableView.setModel(self.productos_model)
@@ -34,15 +38,29 @@ class CarritoForm(QWidget, CarritoCompras):
         self.ui.mouse_press_event(event)
 
     def agregar_al_carrito(self):
-        # Lógica para agregar productos al carrito
+        # Almacena varias filas seleccionadas 
         selected_indexes = self.productos_tableView.selectionModel().selectedRows()
+        print ("++++++++++",selected_indexes)
+
         for index in selected_indexes:
-            producto = self.productos_model.data(index, Qt.DisplayRole)
-            self.carrito_model.add_product(producto)
+            fila_completa = []
+            for column in range(self.productos_model.columnCount()):
+                cell_data = self.productos_model.data(self.productos_model.index(index.row(), column), Qt.DisplayRole)
+                fila_completa.append(cell_data)
+
+            cantidad = self.contador_spinBox.value()
+            #if cantidad > 1: 
+            self.carrito_model.add_to_cart(fila_completa, cantidad)
+            self.filas_seleccionadas.append(fila_completa)
+
 
     def agregar_producto(self):
-        # Lógica para agregar un nuevo producto
-        pass
+        if self.filas_seleccionadas:
+            print("filas seleccionadas: ", self.filas_seleccionadas)
+            return self.filas_seleccionadas
+        else:
+            print("No hay filas seleccionadas")
+            return None
 
     def salir(self):
         self.close()
