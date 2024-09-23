@@ -55,12 +55,47 @@ class CarritoForm(QWidget, CarritoCompras):
 
 
     def agregar_producto(self):
-        if self.filas_seleccionadas:
-            print("filas seleccionadas: ", self.filas_seleccionadas)
-            return self.filas_seleccionadas
-        else:
-            print("No hay filas seleccionadas")
-            return None
+
+        table_view = self.carrito_tableView
+        model = table_view.model()  # Obtener el modelo asociado al QTableView
+
+        # Inicializar una lista vacía para almacenar los diccionarios de los productos
+        productos_list = []
+
+        # Índices de las columnas para nombre, cantidad y precio
+        columna_nombre = 1
+        columna_cantidad = 2
+        columna_precio = 3
+
+        # Recorrer todas las filas de la tabla
+        for row in range(model.rowCount()):
+            # Obtener los datos de las columnas que nos interesan
+            nombre = model.index(row, columna_nombre).data()
+            cantidad = model.index(row, columna_cantidad).data()
+            precio = model.index(row, columna_precio).data()
+
+            # Si la cantidad es mayor a 1, multiplicar el precio por la cantidad
+            if cantidad > 1:
+                precio_total = precio * cantidad
+            else:
+                precio_total = precio
+
+            # Crear un diccionario con los datos del producto
+            producto = {
+                "Nombre": nombre,
+                "Cantidad": cantidad,
+                "Precio Total": precio_total
+            }
+
+            # Agregar el diccionario a la lista de productos
+            productos_list.append(producto)
+
+        # Ahora `productos_list` tiene todos los productos con sus respectivos datos
+        #print(productos_list, "++++\n")
+        for vuelta in productos_list:
+            print(vuelta)
+        return productos_list
+
 
     def salir(self):
         self.close()
