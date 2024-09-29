@@ -46,7 +46,7 @@ class AddWindowForm(QWidget, AddEditMenu):
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
-        servicios_programados= self.servicio_lineEdit.text()
+        servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
         estado = self.estado_comboBox.currentText()
         img= self.img_path_to
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
@@ -88,6 +88,15 @@ class AddWindowForm(QWidget, AddEditMenu):
         id = int(barbero_id.split(' ')[0])
         print(type(id))
         return id
+
+    def recibir_productos(self, productos):
+        """Recibe la lista de productos desde CarritoForm y los añade al ListWidget."""
+        for producto in productos:
+            nombre = producto["Nombre"]
+            cantidad = producto["Cantidad"]
+            precio_total = producto["Precio Total"]
+            item_text = f"{nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
+            self.producto_listWidget.addItem(item_text)
 
     def open_empleados_view(self):
         window = ViewEmpleadoWindowForm(self)

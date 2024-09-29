@@ -32,7 +32,7 @@ class CarritoForm(QWidget, CarritoCompras):
         # Conecta los botones a sus respectivas funciones
         self.add_pushButton.clicked.connect(self.agregar_al_carrito)
         self.add_edit_button.clicked.connect(self.agregar_producto)
-        self.add_edit_button_2.clicked.connect(self.salir)
+        self.add_edit_button_2.clicked.connect(self.confirmar_carrito)
 
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
@@ -92,10 +92,12 @@ class CarritoForm(QWidget, CarritoCompras):
 
         # Ahora `productos_list` tiene todos los productos con sus respectivos datos
         #print(productos_list, "++++\n")
+        self.productos_agregados = productos_list
         for vuelta in productos_list:
             print(vuelta)
         return productos_list
 
 
-    def salir(self):
+    def confirmar_carrito(self):
+        self.parent.recibir_productos(self.productos_agregados)
         self.close()
