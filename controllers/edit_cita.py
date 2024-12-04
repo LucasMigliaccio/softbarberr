@@ -53,7 +53,8 @@ class EditWindowForm(QWidget,AddEditMenu):
         if citas.update(self.cita_id, data):
             self.replace_img()
             print("CITA EDITADA")
-            self.parent.set_table_data()
+            if hasattr(self.parent, 'set_table_data'):
+                self.parent.set_table_data()
             self.close
 
     ############################COMBOBOX SETTERS###################################

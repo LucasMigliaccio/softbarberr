@@ -1,6 +1,6 @@
 import os
 import PySide6.QtGui
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QAbstractItemView, QHBoxLayout, QFrame
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QAbstractItemView, QHBoxLayout, QFrame, QPushButton
 
 from views.main_window import MainWindow
 from views.general_custom_ui import GeneralCustomUi
@@ -16,6 +16,7 @@ from controllers.recuento import RecuentoForm
 from controllers.view_cliente import ViewClienteWindowForm
 from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.view_productos import ViewProductoWindowForm
+from controllers.view_citas_full import ViewCitasFullForm
 from database import citas
 
 class MainWindowForm(QWidget, MainWindow):
@@ -68,7 +69,11 @@ class MainWindowForm(QWidget, MainWindow):
 
     def open_recuento_view(self):
         window = RecuentoForm(self)
-        window.show()   
+        window.show()
+
+    def open_load_more_citas_view(self):
+        window = ViewCitasFullForm(self)
+        window.show()
 
     def config_table(self):
         column_label = ("ID","IMAGEN", "FECHA","CLIENTE(id)", "MONTO", "BARBERO(id)", "SERVICIOS", "TRANSACCIÓN","ESTADO","") 
@@ -89,8 +94,7 @@ class MainWindowForm(QWidget, MainWindow):
 
             
     def populate_table(self, data):
-        self.infopedidos_table.setRowCount(len(data))
-
+        self.infopedidos_table.setRowCount(len(data) + 1)   
         for(index_row, row) in enumerate(data):
             for (index_cell, cell) in enumerate(row):
                 if index_cell == 1:
@@ -108,9 +112,22 @@ class MainWindowForm(QWidget, MainWindow):
             self.infopedidos_table.setCellWidget(
                 index_row,9, self.build_action_button()
             )
+            # Agregar el botón de acción en la fila 26
+            last_row_index = len(data)
+            self.infopedidos_table.setSpan(last_row_index, 0, 1, self.infopedidos_table.columnCount())  # Combina todas las columnas en una
+            load_more_button = QPushButton("Cargar más")  # Botón que puede abrir otra ventana
+            load_more_button.clicked.connect(self.load_more)  # Conectar acción del botón
+            self.infopedidos_table.setCellWidget(last_row_index, 0, load_more_button)
     
+    def load_more(self):
+        self.open_load_more_citas_view()
+        print("Cargar más filas o abrir ventana adicional.")
+        #new_data = self.fetch_data(offset=25)  # Cambia el límite o añade un offset
+        #self.populate_table(new_data)
+
+
     def set_table_data(self):
-        data = citas.select_all_join_prueba()
+        data = citas.select_all_join()
         self.populate_table(data)
 
     def restore_table_data(self):

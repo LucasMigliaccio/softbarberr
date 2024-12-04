@@ -70,7 +70,37 @@ def select_all():
 ####~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~####
 ####~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~####
 ####~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~####
-def select_all_join_prueba():
+def select_all_join():
+    conn= create_connection()
+    sql = """SELECT 
+    citas.CitaID,
+    citas.Img_path,
+    citas.FechaHora,
+    clientes.Nombre AS ClienteNombre,
+    citas.Monto,
+    empleados.Nombre AS EmpleadoNombre,
+    citas.ServiciosProgramados,
+    citas.MetodoPago,
+    citas.Estado
+FROM 
+    citas
+INNER JOIN 
+    clientes ON citas.ClienteID = clientes.ClienteID
+INNER JOIN 
+    empleados ON citas.EmpleadoID = empleados.EmpleadoID ORDER BY FechaHora DESC LIMIT 25"""
+    try:
+        cur= conn.cursor()
+        cur.execute(sql)
+        citas=cur.fetchall()
+        return citas
+    except connector.Error as err:
+        print(f"Error at select_all_cita function: {err.msg}")
+        return False
+    finally:
+        cur.close()
+        conn.close()
+
+def select_all_join_tableview_complete():
     conn= create_connection()
     sql = """SELECT 
     citas.CitaID,
