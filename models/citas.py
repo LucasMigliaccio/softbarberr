@@ -1,4 +1,5 @@
 from PySide6.QtCore import QAbstractTableModel, Qt, QModelIndex
+from database import citas
 
 class CitasTableModel(QAbstractTableModel):
     def __init__(self, data=None, parent=None):
@@ -29,6 +30,10 @@ class CitasTableModel(QAbstractTableModel):
 
     def get_citas(self, row):
         return self._data[row]
+    
+    def refresh_data(self):
+        self._data = citas.select_all_join_tableview_complete()
+        self.layoutChanged.emit()
 
 """
     def add_citas(self, citas):

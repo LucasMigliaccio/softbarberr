@@ -55,37 +55,23 @@ class ViewCitasFullForm(QWidget, ViewCitasFull):
             print(f"Error al intentar eliminar la cita con ID {cita_id}.")
 
     def edit_selected(self):
-        # Obtener la fila seleccionada
         selected_indexes = self.marcas_table.selectionModel().selectedRows()
-
         if not selected_indexes:
             print("No se ha seleccionado ninguna fila.")
             return
 
-        # Obtener la fila seleccionada y su ID
         selected_row = selected_indexes[0].row()
         cita_id = self.citas_model.data(self.citas_model.index(selected_row, 0), Qt.DisplayRole)
 
-        try:
-            print("Entrando a editar cita...")
-            # Abre la ventana de edición y pasa la ID de la cita seleccionada
-            self.open_edit_window_cita(cita_id, selected_row)
-        except Exception as e:
-            print(f"El error lo provoca: {e}")
+        edit_window = EditWindowForm(parent=self, cita_id=cita_id, source_view=self.marcas_table)
+        edit_window.edit_finished.connect(self.refresh_table)
+        edit_window.show()
+        
 
-    def open_edit_window_cita(self, cita_id, selected_row):
-        # Crear la ventana de edición
-        window = EditWindowForm(self, cita_id)
-
-        # Conectar una señal personalizada para actualizar el modelo después de editar
-        window.data_updated.connect(lambda new_data: self.update_row_data(selected_row, new_data))
-
-        # Mostrar la ventana de edición
+    def open_edit_window_cita(self, cita_id):
+        window= EditWindowForm(self, cita_id)
         window.show()
 
-    def update_row_data(self, row, new_data):
-        # Actualiza los datos en el modelo
-        self.citas_model._data[row] = new_data
-        # Emite la señal para refrescar la tabla
-        self.citas_model.layoutChanged.emit()
-        print(f"Datos actualizados para la fila {row}: {new_data}")
+    def refresh_table(self):
+        self.citas_model.refresh_data()
+        print("Tabla actualizada después de editar la cita.")

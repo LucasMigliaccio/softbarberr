@@ -30,7 +30,7 @@ class RecuentoForm(QWidget, RecuentoDetailWindow):
 
 
         data_recuento_efec=recuento.filtro_efectivo_dia(fecha)
-        efectivo= str(data_recuento_efec[3])
+        efectivo= str(data_recuento_efec[0])
         if efectivo == str(None):
             efectivo= str("0")
 

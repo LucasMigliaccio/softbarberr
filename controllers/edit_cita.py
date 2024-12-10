@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget, QFileDialog
-from PySide6.QtCore import Qt, QDateTime
+from PySide6.QtWidgets import QWidget, QFileDialog, QTableView
+from PySide6.QtCore import Qt, QDateTime,Signal
 
 
 from views.add_edit_cita_cb import AddEditMenu
@@ -9,20 +9,23 @@ from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.view_cliente import ViewClienteWindowForm
 
 from database import citas
-
+from models.citas import CitasTableModel
 import os 
 import shutil
 import datetime
 
 class EditWindowForm(QWidget,AddEditMenu):
-    def __init__(self, parent= None, cita_id= None):
+    edit_finished = Signal()
+    def __init__(self, parent= None, cita_id= None, source_view=None):
         self.cita_id = cita_id
         self.parent = parent
+        self.source_view = source_view 
 
         super().__init__(parent)
         self.setupUi(self)
         self.ui = GeneralCustomUi(self)
         self.setWindowFlag(Qt.Window)
+        
 
         self.ui.fill_estado_cb()
         self.fill_inputs()
@@ -53,9 +56,15 @@ class EditWindowForm(QWidget,AddEditMenu):
         if citas.update(self.cita_id, data):
             self.replace_img()
             print("CITA EDITADA")
-            if hasattr(self.parent, 'set_table_data'):
+            if isinstance(self.source_view, QTableView):
+                model = self.source_view.model()
+                if isinstance(model, CitasTableModel):
+                    model.refresh_data()  # Refrescar desde la base de datos
+                self.edit_finished.emit()
+            else:
                 self.parent.set_table_data()
             self.close
+
 
     ############################COMBOBOX SETTERS###################################
             

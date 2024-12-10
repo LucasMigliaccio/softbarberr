@@ -79,11 +79,11 @@ class CarritoForm(QWidget, CarritoCompras):
                 precio_total = precio * cantidad
             else:
                 precio_total = precio
-
             # Crear un diccionario con los datos del producto
             producto = {
                 "Nombre": nombre,
                 "Cantidad": cantidad,
+                "Precio Unidad": precio,
                 "Precio Total": precio_total
             }
 
