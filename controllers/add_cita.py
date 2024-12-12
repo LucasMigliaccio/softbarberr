@@ -91,6 +91,7 @@ class AddWindowForm(QWidget, AddEditMenu):
 
     def recibir_productos(self, productos):
         """Recibe la lista de productos desde CarritoForm y los añade al ListWidget."""
+        self.producto_listWidget.clear() # Limpiar lista antes de agregar nuevos productos
         for producto in productos:
             nombre = producto["Nombre"]
             cantidad = producto["Cantidad"]

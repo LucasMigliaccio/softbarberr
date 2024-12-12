@@ -90,14 +90,16 @@ class CarritoForm(QWidget, CarritoCompras):
             # Agregar el diccionario a la lista de productos
             productos_list.append(producto)
 
-        # Ahora `productos_list` tiene todos los productos con sus respectivos datos
-        #print(productos_list, "++++\n")
         self.productos_agregados = productos_list
+
         for vuelta in productos_list:
             print(vuelta)
+
+        self.confirmar_carrito()
         return productos_list
 
 
     def confirmar_carrito(self):
-        self.parent.recibir_productos(self.productos_agregados)
+        if self.parent:
+            self.parent.recibir_productos(self.productos_agregados)
         self.close()
