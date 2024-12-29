@@ -1,5 +1,7 @@
 import os
 import PySide6.QtGui
+import json
+
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QAbstractItemView, QHBoxLayout, QFrame, QPushButton
 
 from views.main_window import MainWindow
@@ -94,31 +96,52 @@ class MainWindowForm(QWidget, MainWindow):
 
             
     def populate_table(self, data):
-        self.infopedidos_table.setRowCount(len(data) + 1)   
-        for(index_row, row) in enumerate(data):
-            for (index_cell, cell) in enumerate(row):
+        self.infopedidos_table.setRowCount(len(data) + 1)
+        for index_row, row in enumerate(data):
+            for index_cell, cell in enumerate(row):
                 if index_cell == 1:
                     self.infopedidos_table.setCellWidget(
                         index_row, index_cell, components.CitaImg(cell)
                     )
                 elif index_cell == 4:
                     self.infopedidos_table.setItem(
-                        index_row, index_cell, QTableWidgetItem("$ "+ str(cell))
+                        index_row, index_cell, QTableWidgetItem("$ " + str(cell))
+                    )
+                elif index_cell == 6:  # Columna de ServiciosProgramados
+                    try:
+                        servicios_programados = json.loads(cell)  # Convertir JSON a lista de servicios
+                        if isinstance(servicios_programados, list) and len(servicios_programados) > 0:
+                            # Filtrar solo los nombres de los servicios
+                            nombres_servicios = [
+                                servicio.split(" - ")[0] for servicio in servicios_programados
+                            ]
+                            servicios_texto = ", ".join(nombres_servicios)  # Unir los nombres en una cadena
+                        else:
+                            servicios_texto = "Sin datos"
+                    except (json.JSONDecodeError, TypeError) as e:
+                        servicios_texto = "Error en datos"
+                    
+                    self.infopedidos_table.setItem(
+                        index_row, index_cell, QTableWidgetItem(servicios_texto)
                     )
                 else:
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem(str(cell))
                     )
+            
+            # Agregar un botón de acción en la columna 9
             self.infopedidos_table.setCellWidget(
-                index_row,9, self.build_action_button()
+                index_row, 9, self.build_action_button()
             )
-            # Agregar el botón de acción en la fila 26
-            last_row_index = len(data)
-            self.infopedidos_table.setSpan(last_row_index, 0, 1, self.infopedidos_table.columnCount())  # Combina todas las columnas en una
-            load_more_button = QPushButton("Cargar más")  # Botón que puede abrir otra ventana
-            load_more_button.clicked.connect(self.load_more)  # Conectar acción del botón
-            self.infopedidos_table.setCellWidget(last_row_index, 0, load_more_button)
-    
+        
+        # Agregar el botón "Cargar más" en la última fila
+        last_row_index = len(data)
+        self.infopedidos_table.setSpan(
+            last_row_index, 0, 1, self.infopedidos_table.columnCount()
+        )  # Combina todas las columnas en una
+        load_more_button = QPushButton("Cargar más")  # Botón que puede abrir otra ventana
+        load_more_button.clicked.connect(self.load_more)  # Conectar acción del botón
+        self.infopedidos_table.setCellWidget(last_row_index, 0, load_more_button)
     def load_more(self):
         self.open_load_more_citas_view()
         print("Cargar más filas o abrir ventana adicional.")

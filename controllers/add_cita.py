@@ -1,3 +1,7 @@
+import shutil
+import datetime
+import json
+
 from PySide6.QtWidgets import QWidget, QFileDialog
 from PySide6.QtCore import Qt
 
@@ -10,8 +14,6 @@ from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.carrito import CarritoForm
 
 from database import citas
-import shutil
-import datetime
 
 class AddWindowForm(QWidget, AddEditMenu):
     
@@ -47,15 +49,21 @@ class AddWindowForm(QWidget, AddEditMenu):
         monto = self.monto_lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
         servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
+        servicios_programados_json = json.dumps(servicios_programados)
         estado = self.estado_comboBox.currentText()
+
+        if not hasattr(self, 'img_path_to') or not self.img_path_to:
+            self.img_path_to = "images/imagen_custom_product_service.png"
+
         img= self.img_path_to
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
 
         data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
-                servicios_programados, estado, img)
+                servicios_programados_json, estado, img)
 
         if citas.insert(data):
-            self.save_img()
+            if hasattr(self, 'img_path_from') and self.img_path_from:
+                self.save_img()
             print("CITA AÑADIDA")
             self.clear_inputs()
             self.parent.set_table_data()
@@ -67,7 +75,8 @@ class AddWindowForm(QWidget, AddEditMenu):
         self.imagen_lineEdit.setText(img_name)
 
     def save_img(self):
-        shutil.copy(self.img_path_from, "images")
+        if hasattr(self, 'img_path_from') and self.img_path_from:
+            shutil.copy(self.img_path_from, "images")
 
     def clear_inputs(self):
         self.fechahora_dateTimeEdit.clear()
@@ -92,12 +101,18 @@ class AddWindowForm(QWidget, AddEditMenu):
     def recibir_productos(self, productos):
         """Recibe la lista de productos desde CarritoForm y los añade al ListWidget."""
         self.producto_listWidget.clear() # Limpiar lista antes de agregar nuevos productos
+        total_precio = 0 
+        
         for producto in productos:
             nombre = producto["Nombre"]
             cantidad = producto["Cantidad"]
             precio_total = producto["Precio Total"]
+            total_precio += precio_total
             item_text = f"{nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
             self.producto_listWidget.addItem(item_text)
+        
+        total_precio = int(total_precio)
+        self.monto_lineEdit.setText(f"{total_precio:.2f}")
 
     def open_empleados_view(self):
         window = ViewEmpleadoWindowForm(self)

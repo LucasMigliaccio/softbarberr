@@ -234,3 +234,18 @@ def fix_foreingkeys():
     finally:
         cur.close()
         conn.close()
+
+def prueba_json_servicios():
+    conn= create_connection()
+    sql ="""SELECT citas.ServiciosProgramados FROM citas;"""
+    try:
+        cur= conn.cursor()
+        cur.execute(sql)
+        citas=cur.fetchall()
+        return citas
+    except connector.Error as err:
+        print(f"Error at select_all_cita function: {err.msg}")
+        return False
+    finally:
+        cur.close()
+        conn.close()

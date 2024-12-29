@@ -1,18 +1,22 @@
+import os 
+import shutil
+import datetime
+import json
+
 from PySide6.QtWidgets import QWidget, QFileDialog, QTableView
 from PySide6.QtCore import Qt, QDateTime,Signal
 
 
-from views.add_edit_cita_cb import AddEditMenu
+from views.add_edit_cita_automatizado import AddEditMenu
 from views.general_custom_ui import GeneralCustomUi
 
 from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.view_cliente import ViewClienteWindowForm
+from controllers.carrito import CarritoForm
 
 from database import citas
 from models.citas import CitasTableModel
-import os 
-import shutil
-import datetime
+
 
 class EditWindowForm(QWidget,AddEditMenu):
     edit_finished = Signal()
@@ -31,9 +35,15 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.fill_inputs()
         self.add_edit_button.setText("EDITAR")
         self.add_edit_button.clicked.connect(self.update_cita)
-        self.pushButton_img.clicked.connect(self.select_img)
+        self.cancel_button.clicked.connect(self.close)
+
+
         self.pushButton_img_3.clicked.connect(self.open_empleados_view)
         self.pushButton_img_2.clicked.connect(self.open_clientes_view)
+        self.add_producto_pushButton.clicked.connect(self.open_carrito)
+
+
+        self.pushButton_img.clicked.connect(self.select_img)
 
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
@@ -45,13 +55,14 @@ class EditWindowForm(QWidget,AddEditMenu):
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
-        servicios_programados= self.servicio_lineEdit.text()
+        servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
+        servicios_programados_json = json.dumps(servicios_programados)
         estado = self.estado_comboBox.currentText()
         img= f"images\{self.imagen_lineEdit.text()}"
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
 
         data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
-                servicios_programados, estado, img)
+                servicios_programados_json, estado, img)
 
         if citas.update(self.cita_id, data):
             self.replace_img()
@@ -101,7 +112,13 @@ class EditWindowForm(QWidget,AddEditMenu):
 
         self.fechahora_dateTimeEdit.setDateTime(fecha_hora_qdatetime)
         self.monto_lineEdit.setText(str(data[4]))
-        self.servicio_lineEdit.setText(str(data[5]))
+        servicios = json.loads(data[5])  # Suponiendo que data[5] contiene un JSON de servicios
+        if isinstance(servicios, list):
+            for servicio in servicios:
+                self.producto_listWidget.addItem(servicio)  # Agregar cada servicio como un elemento
+        else:
+            self.producto_listWidget.addItem("Datos no válidos")  # En caso de error
+
         self.set_current_pago_cb(data[6])
         self.set_current_estado_cb(data[7])
 
@@ -155,7 +172,17 @@ class EditWindowForm(QWidget,AddEditMenu):
         id = int(barbero_id.split(' ')[0])
         print(type(id))
         return id
-    
+
+    def recibir_productos(self, productos):
+        """Recibe la lista de productos desde CarritoForm y los añade al ListWidget."""
+        self.producto_listWidget.clear() # Limpiar lista antes de agregar nuevos productos
+        for producto in productos:
+            nombre = producto["Nombre"]
+            cantidad = producto["Cantidad"]
+            precio_total = producto["Precio Total"]
+            item_text = f"{nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
+            self.producto_listWidget.addItem(item_text)
+
     def open_empleados_view(self):
         window = ViewEmpleadoWindowForm(self)
         window.show()
@@ -163,3 +190,9 @@ class EditWindowForm(QWidget,AddEditMenu):
     def open_clientes_view(self):
         window = ViewClienteWindowForm(self)
         window.show()
+
+    def open_carrito(self):
+        window = CarritoForm(self)
+        window.show()
+
+
