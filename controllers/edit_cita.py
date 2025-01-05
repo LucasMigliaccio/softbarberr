@@ -58,6 +58,10 @@ class EditWindowForm(QWidget,AddEditMenu):
         servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
         servicios_programados_json = json.dumps(servicios_programados)
         estado = self.estado_comboBox.currentText()
+
+        if not hasattr(self, 'img_path_to') or not self.img_path_to:
+            self.img_path_to = "images/imagen_custom_product_service.png"
+
         img= f"images\{self.imagen_lineEdit.text()}"
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
 
@@ -65,7 +69,8 @@ class EditWindowForm(QWidget,AddEditMenu):
                 servicios_programados_json, estado, img)
 
         if citas.update(self.cita_id, data):
-            self.replace_img()
+            if hasattr(self, 'img_path_from') and self.img_path_from:
+                self.replace_img()
             print("CITA EDITADA")
             if isinstance(self.source_view, QTableView):
                 model = self.source_view.model()
@@ -176,12 +181,18 @@ class EditWindowForm(QWidget,AddEditMenu):
     def recibir_productos(self, productos):
         """Recibe la lista de productos desde CarritoForm y los añade al ListWidget."""
         self.producto_listWidget.clear() # Limpiar lista antes de agregar nuevos productos
+        total_precio = 0 
+        
         for producto in productos:
             nombre = producto["Nombre"]
             cantidad = producto["Cantidad"]
             precio_total = producto["Precio Total"]
+            total_precio += precio_total
             item_text = f"{nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
             self.producto_listWidget.addItem(item_text)
+        
+        total_precio = int(total_precio)
+        self.monto_lineEdit.setText(f"{total_precio:.2f}") 
 
     def open_empleados_view(self):
         window = ViewEmpleadoWindowForm(self)
