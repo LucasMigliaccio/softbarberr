@@ -142,6 +142,7 @@ class MainWindowForm(QWidget, MainWindow):
         load_more_button = QPushButton("Cargar más")  # Botón que puede abrir otra ventana
         load_more_button.clicked.connect(self.load_more)  # Conectar acción del botón
         self.infopedidos_table.setCellWidget(last_row_index, 0, load_more_button)
+
     def load_more(self):
         self.open_load_more_citas_view()
         print("Cargar más filas o abrir ventana adicional.")

@@ -330,7 +330,7 @@ border-radius: 15px;</string>
                      <item>
                       <widget class="QLabel" name="mp_ico_label">
                        <property name="styleSheet">
-                        <string notr="true">image: url(:/imagess/mercadopago.png);</string>
+                        <string notr="true">image: url(:/prefijoNuevo/assets/icons/mercadopago.png);</string>
                        </property>
                        <property name="text">
                         <string/>
@@ -379,7 +379,7 @@ border-radius: 15px;</string>
                      <item>
                       <widget class="QLabel" name="efec_ico_label">
                        <property name="styleSheet">
-                        <string notr="true">image: url(:/imagess/efectivo.png);</string>
+                        <string notr="true">image: url(:/prefijoNuevo/assets/icons/efectivo.png);</string>
                        </property>
                        <property name="text">
                         <string/>
@@ -520,7 +520,8 @@ font: 87 16pt &quot;Segoe UI Black&quot;;</string>
   </layout>
  </widget>
  <resources>
-  <include location="L:/AngelCuk/ui_files/logo.qrc"/>
+  <include location="icons.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>
