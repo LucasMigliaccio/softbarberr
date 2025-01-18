@@ -34,6 +34,11 @@ class CarritoForm(QWidget, CarritoCompras):
         self.add_edit_button.clicked.connect(self.agregar_producto)
         self.add_edit_button_2.clicked.connect(self.confirmar_carrito)
 
+        # Conectar el QSpinBox a la función que maneja cambios de valor
+        self.contador_spinBox.setMinimum(1)  # Valor mínimo
+        self.contador_spinBox.setMaximum(100)  # Ajusta según tus necesidades
+        self.contador_spinBox.setValue(1)
+
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
 
@@ -52,6 +57,7 @@ class CarritoForm(QWidget, CarritoCompras):
             #if cantidad > 1: 
             self.carrito_model.add_to_cart(fila_completa, cantidad)
             self.filas_seleccionadas.append(fila_completa)
+
 
 
     def agregar_producto(self):
