@@ -6,7 +6,7 @@ from database.connection import create_connection
 def select_all():
     conn= create_connection()
     sql = """SELECT CitaID, ClienteID, EmpleadoID, FechaHora, Monto, 
-                                MetodoPago, ServiciosProgramados, Estado FROM cita"""
+                                MetodoPago, ServiciosProgramados, Seña Estado FROM cita"""
     try:
         cursor= conn.cursor()
         cursor.execute(sql)

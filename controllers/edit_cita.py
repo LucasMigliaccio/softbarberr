@@ -54,6 +54,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         barbero = self.leave_id_alone_barbero()
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
+        seña = self.lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
         servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
         servicios_programados_json = json.dumps(servicios_programados)
@@ -65,7 +66,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         img= f"images\{self.imagen_lineEdit.text()}"
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
 
-        data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
+        data = (cliente, barbero, fechayhora_string, monto,seña, metodo_pago,
                 servicios_programados_json, estado, img)
 
         if citas.update(self.cita_id, data):
@@ -93,7 +94,6 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.estado_comboBox.setCurrentIndex(text_index)
 
     def set_current_empleado_cb(self, text):
-        print(text)
         text_index= self.barbero_comboBox.findText(text)
         self.barbero_comboBox.setCurrentIndex(text_index)
     
@@ -117,15 +117,16 @@ class EditWindowForm(QWidget,AddEditMenu):
 
         self.fechahora_dateTimeEdit.setDateTime(fecha_hora_qdatetime)
         self.monto_lineEdit.setText(str(data[4]))
-        servicios = json.loads(data[5])  # Suponiendo que data[5] contiene un JSON de servicios
+        self.lineEdit.setText(str(data[5]))
+        servicios = json.loads(data[6])  # Suponiendo que data[6] contiene un JSON de servicios
         if isinstance(servicios, list):
             for servicio in servicios:
                 self.producto_listWidget.addItem(servicio)  # Agregar cada servicio como un elemento
         else:
             self.producto_listWidget.addItem("Datos no válidos")  # En caso de error
 
-        self.set_current_pago_cb(data[6])
-        self.set_current_estado_cb(data[7])
+        self.set_current_pago_cb(data[7])
+        self.set_current_estado_cb(data[8])
 
         img_name = data[8].split("\\")[-1]
 

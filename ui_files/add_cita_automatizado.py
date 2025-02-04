@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'add_cita_automatizados.ui'
+## Form generated from reading UI file 'add_cita_automatizado.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -16,15 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDateTimeEdit, QFrame,
-    QGridLayout, QHBoxLayout, QLabel, QLayout,
-    QLineEdit, QListWidget, QListWidgetItem, QPushButton,
-    QSizePolicy, QToolButton, QVBoxLayout, QWidget)
+    QHBoxLayout, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QPushButton, QSizePolicy, QToolButton,
+    QVBoxLayout, QWidget)
 
 class AddEditMenu(object):
     def setupUi(self, add_edit_menu):
         if not add_edit_menu.objectName():
             add_edit_menu.setObjectName(u"add_edit_menu")
-        add_edit_menu.resize(630, 850)
+        add_edit_menu.resize(760, 1000)
         add_edit_menu.setMinimumSize(QSize(600, 0))
         add_edit_menu.setMaximumSize(QSize(16777215, 16777215))
         self.horizontalLayout = QHBoxLayout(add_edit_menu)
@@ -56,7 +56,6 @@ class AddEditMenu(object):
         self.content_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout = QVBoxLayout(self.content_frame)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(7, 7, 7, 7)
         self.frame_nav = QFrame(self.content_frame)
         self.frame_nav.setObjectName(u"frame_nav")
         self.frame_nav.setMinimumSize(QSize(0, 40))
@@ -124,10 +123,9 @@ class AddEditMenu(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.fecha_tittle = QLabel(self.frame_inferior)
         self.fecha_tittle.setObjectName(u"fecha_tittle")
-        self.fecha_tittle.setMaximumSize(QSize(16777215, 25))
         font1 = QFont()
         font1.setFamilies([u"Segoe UI Black"])
-        font1.setPointSize(10)
+        font1.setPointSize(14)
         font1.setBold(True)
         font1.setItalic(False)
         self.fecha_tittle.setFont(font1)
@@ -136,24 +134,23 @@ class AddEditMenu(object):
 
         self.verticalLayout_3.addWidget(self.fecha_tittle)
 
-        self.frame_hora = QFrame(self.frame_inferior)
-        self.frame_hora.setObjectName(u"frame_hora")
-        self.frame_hora.setMinimumSize(QSize(0, 40))
-        self.frame_hora.setMaximumSize(QSize(16777215, 40))
-        self.frame_hora.setFrameShape(QFrame.StyledPanel)
-        self.frame_hora.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.frame_hora)
-        self.horizontalLayout_2.setSpacing(7)
+        self.frame_2 = QFrame(self.frame_inferior)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setMinimumSize(QSize(0, 40))
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
+        self.horizontalLayout_2.setSpacing(4)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(7, 0, 7, 0)
-        self.fechahora_dateTimeEdit = QDateTimeEdit(self.frame_hora)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.fechahora_dateTimeEdit = QDateTimeEdit(self.frame_2)
         self.fechahora_dateTimeEdit.setObjectName(u"fechahora_dateTimeEdit")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.fechahora_dateTimeEdit.sizePolicy().hasHeightForWidth())
         self.fechahora_dateTimeEdit.setSizePolicy(sizePolicy)
-        self.fechahora_dateTimeEdit.setMinimumSize(QSize(0, 27))
+        self.fechahora_dateTimeEdit.setMinimumSize(QSize(0, 33))
         font2 = QFont()
         font2.setFamilies([u"Microsoft YaHei"])
         font2.setPointSize(12)
@@ -167,37 +164,36 @@ class AddEditMenu(object):
         self.horizontalLayout_2.addWidget(self.fechahora_dateTimeEdit)
 
 
-        self.verticalLayout_3.addWidget(self.frame_hora)
+        self.verticalLayout_3.addWidget(self.frame_2)
 
         self.barbero_tittle = QLabel(self.frame_inferior)
         self.barbero_tittle.setObjectName(u"barbero_tittle")
-        self.barbero_tittle.setMaximumSize(QSize(16777215, 25))
         self.barbero_tittle.setFont(font1)
         self.barbero_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.barbero_tittle.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.barbero_tittle)
 
-        self.frame_barbero = QFrame(self.frame_inferior)
-        self.frame_barbero.setObjectName(u"frame_barbero")
-        self.frame_barbero.setMinimumSize(QSize(0, 0))
-        self.frame_barbero.setMaximumSize(QSize(16777215, 40))
-        self.frame_barbero.setFrameShape(QFrame.StyledPanel)
-        self.frame_barbero.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_7 = QHBoxLayout(self.frame_barbero)
-        self.horizontalLayout_7.setSpacing(7)
+        self.frame_4 = QFrame(self.frame_inferior)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setMinimumSize(QSize(0, 0))
+        self.frame_4.setMaximumSize(QSize(16777215, 40))
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.frame_4)
+        self.horizontalLayout_7.setSpacing(0)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.horizontalLayout_7.setContentsMargins(7, 0, 7, 0)
-        self.barbero_comboBox = QComboBox(self.frame_barbero)
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.barbero_comboBox = QComboBox(self.frame_4)
         self.barbero_comboBox.setObjectName(u"barbero_comboBox")
-        self.barbero_comboBox.setMinimumSize(QSize(70, 27))
-        self.barbero_comboBox.setMaximumSize(QSize(16777215, 25))
+        self.barbero_comboBox.setMinimumSize(QSize(70, 40))
+        self.barbero_comboBox.setMaximumSize(QSize(16777215, 33))
         self.barbero_comboBox.setStyleSheet(u"background-color: white;\n"
 "border: 1px solid grey;")
 
         self.horizontalLayout_7.addWidget(self.barbero_comboBox)
 
-        self.pushButton_img_3 = QPushButton(self.frame_barbero)
+        self.pushButton_img_3 = QPushButton(self.frame_4)
         self.pushButton_img_3.setObjectName(u"pushButton_img_3")
         self.pushButton_img_3.setMinimumSize(QSize(40, 40))
         self.pushButton_img_3.setMaximumSize(QSize(40, 33))
@@ -216,44 +212,43 @@ class AddEditMenu(object):
 "background-color: rgb(0, 195, 0);\n"
 "}")
         icon4 = QIcon()
-        icon4.addFile(u"./assets/icons/plus.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon4.addFile(u"../assets/icons/plus.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushButton_img_3.setIcon(icon4)
         self.pushButton_img_3.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_7.addWidget(self.pushButton_img_3)
 
 
-        self.verticalLayout_3.addWidget(self.frame_barbero)
+        self.verticalLayout_3.addWidget(self.frame_4)
 
         self.cliente_tittle = QLabel(self.frame_inferior)
         self.cliente_tittle.setObjectName(u"cliente_tittle")
-        self.cliente_tittle.setMaximumSize(QSize(16777215, 25))
         self.cliente_tittle.setFont(font1)
         self.cliente_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.cliente_tittle.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.cliente_tittle)
 
-        self.frame_cliente = QFrame(self.frame_inferior)
-        self.frame_cliente.setObjectName(u"frame_cliente")
-        self.frame_cliente.setMinimumSize(QSize(0, 0))
-        self.frame_cliente.setMaximumSize(QSize(16777215, 40))
-        self.frame_cliente.setFrameShape(QFrame.StyledPanel)
-        self.frame_cliente.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_5 = QHBoxLayout(self.frame_cliente)
-        self.horizontalLayout_5.setSpacing(7)
+        self.frame_3 = QFrame(self.frame_inferior)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setMinimumSize(QSize(0, 0))
+        self.frame_3.setMaximumSize(QSize(16777215, 40))
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame_3)
+        self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalLayout_5.setContentsMargins(7, 0, 7, 0)
-        self.cliente_comboBox = QComboBox(self.frame_cliente)
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.cliente_comboBox = QComboBox(self.frame_3)
         self.cliente_comboBox.setObjectName(u"cliente_comboBox")
-        self.cliente_comboBox.setMinimumSize(QSize(70, 27))
-        self.cliente_comboBox.setMaximumSize(QSize(16777215, 27))
+        self.cliente_comboBox.setMinimumSize(QSize(70, 40))
+        self.cliente_comboBox.setMaximumSize(QSize(16777215, 33))
         self.cliente_comboBox.setStyleSheet(u"background-color: white;\n"
 "border: 1px solid grey;")
 
         self.horizontalLayout_5.addWidget(self.cliente_comboBox)
 
-        self.pushButton_img_2 = QPushButton(self.frame_cliente)
+        self.pushButton_img_2 = QPushButton(self.frame_3)
         self.pushButton_img_2.setObjectName(u"pushButton_img_2")
         self.pushButton_img_2.setMinimumSize(QSize(40, 40))
         self.pushButton_img_2.setMaximumSize(QSize(40, 33))
@@ -272,11 +267,10 @@ class AddEditMenu(object):
         self.horizontalLayout_5.addWidget(self.pushButton_img_2)
 
 
-        self.verticalLayout_3.addWidget(self.frame_cliente)
+        self.verticalLayout_3.addWidget(self.frame_3)
 
         self.servicio_tittle = QLabel(self.frame_inferior)
         self.servicio_tittle.setObjectName(u"servicio_tittle")
-        self.servicio_tittle.setMaximumSize(QSize(16777215, 25))
         self.servicio_tittle.setFont(font1)
         self.servicio_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.servicio_tittle.setAlignment(Qt.AlignCenter)
@@ -285,18 +279,15 @@ class AddEditMenu(object):
 
         self.frame_servicios = QFrame(self.frame_inferior)
         self.frame_servicios.setObjectName(u"frame_servicios")
-        self.frame_servicios.setMaximumSize(QSize(16777215, 160))
         self.frame_servicios.setStyleSheet(u"background-color: rgb(34, 34, 34);")
         self.frame_servicios.setFrameShape(QFrame.StyledPanel)
         self.frame_servicios.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_10 = QHBoxLayout(self.frame_servicios)
-        self.horizontalLayout_10.setSpacing(7)
+        self.horizontalLayout_10.setSpacing(0)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.horizontalLayout_10.setContentsMargins(7, 0, 7, 0)
+        self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.producto_listWidget = QListWidget(self.frame_servicios)
         self.producto_listWidget.setObjectName(u"producto_listWidget")
-        self.producto_listWidget.setMinimumSize(QSize(0, 250))
-        self.producto_listWidget.setMaximumSize(QSize(16777215, 230))
         self.producto_listWidget.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
 
@@ -304,8 +295,8 @@ class AddEditMenu(object):
 
         self.add_producto_pushButton = QPushButton(self.frame_servicios)
         self.add_producto_pushButton.setObjectName(u"add_producto_pushButton")
-        self.add_producto_pushButton.setMinimumSize(QSize(0, 170))
-        self.add_producto_pushButton.setMaximumSize(QSize(16777215, 170))
+        self.add_producto_pushButton.setMinimumSize(QSize(0, 110))
+        self.add_producto_pushButton.setMaximumSize(QSize(16777215, 16777215))
         self.add_producto_pushButton.setStyleSheet(u"QPushButton {\n"
 "background-color: #7c7c7c;\n"
 "color: white;\n"
@@ -324,30 +315,25 @@ class AddEditMenu(object):
 
         self.verticalLayout_3.addWidget(self.frame_servicios)
 
-        self.frame_monto_label = QFrame(self.frame_inferior)
-        self.frame_monto_label.setObjectName(u"frame_monto_label")
-        self.frame_monto_label.setMaximumSize(QSize(16777215, 25))
-        self.frame_monto_label.setFrameShape(QFrame.StyledPanel)
-        self.frame_monto_label.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_9 = QHBoxLayout(self.frame_monto_label)
-        self.horizontalLayout_9.setSpacing(0)
+        self.frame_5 = QFrame(self.frame_inferior)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_9 = QHBoxLayout(self.frame_5)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.monto_tittle = QLabel(self.frame_monto_label)
+        self.monto_tittle = QLabel(self.frame_5)
         self.monto_tittle.setObjectName(u"monto_tittle")
-        self.monto_tittle.setMaximumSize(QSize(16777215, 25))
         self.monto_tittle.setFont(font1)
         self.monto_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.monto_tittle.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_9.addWidget(self.monto_tittle)
 
-        self.label = QLabel(self.frame_monto_label)
+        self.label = QLabel(self.frame_5)
         self.label.setObjectName(u"label")
-        self.label.setMaximumSize(QSize(16777215, 25))
         font4 = QFont()
         font4.setFamilies([u"Segoe UI Black"])
-        font4.setPointSize(10)
+        font4.setPointSize(14)
         font4.setBold(True)
         self.label.setFont(font4)
         self.label.setStyleSheet(u"color: rgb(230, 230, 230);")
@@ -355,9 +341,9 @@ class AddEditMenu(object):
 
         self.horizontalLayout_9.addWidget(self.label)
 
-        self.descuento_tittle = QLabel(self.frame_monto_label)
+        self.descuento_tittle = QLabel(self.frame_5)
         self.descuento_tittle.setObjectName(u"descuento_tittle")
-        self.descuento_tittle.setMaximumSize(QSize(235, 25))
+        self.descuento_tittle.setMaximumSize(QSize(235, 16777215))
         self.descuento_tittle.setFont(font1)
         self.descuento_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.descuento_tittle.setAlignment(Qt.AlignCenter)
@@ -365,17 +351,14 @@ class AddEditMenu(object):
         self.horizontalLayout_9.addWidget(self.descuento_tittle)
 
 
-        self.verticalLayout_3.addWidget(self.frame_monto_label)
+        self.verticalLayout_3.addWidget(self.frame_5)
 
         self.frame_monto = QFrame(self.frame_inferior)
         self.frame_monto.setObjectName(u"frame_monto")
-        self.frame_monto.setMaximumSize(QSize(16777215, 35))
         self.frame_monto.setFrameShape(QFrame.StyledPanel)
         self.frame_monto.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame_monto)
-        self.horizontalLayout_8.setSpacing(7)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(7, 0, 7, 0)
         self.monto_lineEdit = QLineEdit(self.frame_monto)
         self.monto_lineEdit.setObjectName(u"monto_lineEdit")
         self.monto_lineEdit.setMinimumSize(QSize(0, 33))
@@ -405,56 +388,40 @@ class AddEditMenu(object):
 
         self.verticalLayout_3.addWidget(self.frame_monto)
 
-        self.frame = QFrame(self.frame_inferior)
-        self.frame.setObjectName(u"frame")
-        self.frame.setMaximumSize(QSize(16777215, 100))
-        self.frame.setStyleSheet(u"background-color: rgb(34, 34, 34);")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.gridLayout = QGridLayout(self.frame)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.gridLayout.setContentsMargins(7, 0, 7, 0)
-        self.pago_tittle = QLabel(self.frame)
+        self.pago_tittle = QLabel(self.frame_inferior)
         self.pago_tittle.setObjectName(u"pago_tittle")
-        self.pago_tittle.setMaximumSize(QSize(16777215, 25))
         self.pago_tittle.setFont(font1)
         self.pago_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.pago_tittle.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.pago_tittle, 0, 0, 1, 1)
+        self.verticalLayout_3.addWidget(self.pago_tittle)
 
-        self.estado_tittle = QLabel(self.frame)
+        self.pago_comboBox = QComboBox(self.frame_inferior)
+        self.pago_comboBox.setObjectName(u"pago_comboBox")
+        self.pago_comboBox.setMinimumSize(QSize(0, 33))
+        self.pago_comboBox.setMaximumSize(QSize(16777215, 33))
+        self.pago_comboBox.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.verticalLayout_3.addWidget(self.pago_comboBox)
+
+        self.estado_tittle = QLabel(self.frame_inferior)
         self.estado_tittle.setObjectName(u"estado_tittle")
-        self.estado_tittle.setMaximumSize(QSize(16777215, 25))
         self.estado_tittle.setFont(font1)
         self.estado_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.estado_tittle.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.estado_tittle, 0, 1, 1, 1)
+        self.verticalLayout_3.addWidget(self.estado_tittle)
 
-        self.pago_comboBox = QComboBox(self.frame)
-        self.pago_comboBox.setObjectName(u"pago_comboBox")
-        self.pago_comboBox.setMinimumSize(QSize(0, 33))
-        self.pago_comboBox.setMaximumSize(QSize(16777215, 35))
-        self.pago_comboBox.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout.addWidget(self.pago_comboBox, 1, 0, 1, 1)
-
-        self.estado_comboBox = QComboBox(self.frame)
+        self.estado_comboBox = QComboBox(self.frame_inferior)
         self.estado_comboBox.setObjectName(u"estado_comboBox")
         self.estado_comboBox.setMinimumSize(QSize(0, 33))
-        self.estado_comboBox.setMaximumSize(QSize(16777215, 35))
+        self.estado_comboBox.setMaximumSize(QSize(16777215, 33))
         self.estado_comboBox.setStyleSheet(u"background-color: rgb(255, 255, 255);")
 
-        self.gridLayout.addWidget(self.estado_comboBox, 1, 1, 1, 1)
-
-
-        self.verticalLayout_3.addWidget(self.frame)
+        self.verticalLayout_3.addWidget(self.estado_comboBox)
 
         self.imagen_tittle = QLabel(self.frame_inferior)
         self.imagen_tittle.setObjectName(u"imagen_tittle")
-        self.imagen_tittle.setMaximumSize(QSize(16777215, 25))
         self.imagen_tittle.setFont(font1)
         self.imagen_tittle.setStyleSheet(u"color: rgb(230, 230, 230);")
         self.imagen_tittle.setAlignment(Qt.AlignCenter)
@@ -464,17 +431,17 @@ class AddEditMenu(object):
 
         self.verticalLayout.addWidget(self.frame_inferior)
 
-        self.frame_img = QFrame(self.content_frame)
-        self.frame_img.setObjectName(u"frame_img")
-        self.frame_img.setMinimumSize(QSize(0, 0))
-        self.frame_img.setMaximumSize(QSize(16777215, 40))
-        self.frame_img.setFrameShape(QFrame.StyledPanel)
-        self.frame_img.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_4 = QHBoxLayout(self.frame_img)
-        self.horizontalLayout_4.setSpacing(7)
+        self.frame = QFrame(self.content_frame)
+        self.frame.setObjectName(u"frame")
+        self.frame.setMinimumSize(QSize(0, 0))
+        self.frame.setMaximumSize(QSize(16777215, 40))
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.frame)
+        self.horizontalLayout_4.setSpacing(0)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setContentsMargins(7, 0, 7, 0)
-        self.imagen_lineEdit = QLineEdit(self.frame_img)
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.imagen_lineEdit = QLineEdit(self.frame)
         self.imagen_lineEdit.setObjectName(u"imagen_lineEdit")
         self.imagen_lineEdit.setMinimumSize(QSize(70, 33))
         self.imagen_lineEdit.setMaximumSize(QSize(16777215, 16777215))
@@ -483,7 +450,7 @@ class AddEditMenu(object):
 
         self.horizontalLayout_4.addWidget(self.imagen_lineEdit)
 
-        self.pushButton_img = QPushButton(self.frame_img)
+        self.pushButton_img = QPushButton(self.frame)
         self.pushButton_img.setObjectName(u"pushButton_img")
         self.pushButton_img.setMinimumSize(QSize(40, 33))
         self.pushButton_img.setMaximumSize(QSize(40, 33))
@@ -497,19 +464,18 @@ class AddEditMenu(object):
 "background-color: rgb(0, 195, 0);\n"
 "}")
         icon6 = QIcon()
-        icon6.addFile(u"./assets/icons/open-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon6.addFile(u"../assets/icons/open-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushButton_img.setIcon(icon6)
         self.pushButton_img.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_4.addWidget(self.pushButton_img)
 
 
-        self.verticalLayout.addWidget(self.frame_img)
+        self.verticalLayout.addWidget(self.frame)
 
         self.add_edit_button = QPushButton(self.content_frame)
         self.add_edit_button.setObjectName(u"add_edit_button")
         self.add_edit_button.setMinimumSize(QSize(0, 50))
-        self.add_edit_button.setMaximumSize(QSize(16777215, 50))
         self.add_edit_button.setFont(font3)
         self.add_edit_button.setStyleSheet(u"QPushButton {\n"
 "background-color: #7c7c7c;\n"
@@ -528,7 +494,6 @@ class AddEditMenu(object):
         self.cancel_button = QPushButton(self.content_frame)
         self.cancel_button.setObjectName(u"cancel_button")
         self.cancel_button.setMinimumSize(QSize(0, 50))
-        self.cancel_button.setMaximumSize(QSize(16777215, 50))
         self.cancel_button.setFont(font3)
         self.cancel_button.setStyleSheet(u"QPushButton {\n"
 "background-color: #7c7c7c;\n"
@@ -571,7 +536,7 @@ class AddEditMenu(object):
         self.pushButton_img_3.setText("")
         self.cliente_tittle.setText(QCoreApplication.translate("add_edit_menu", u"CLIENTE", None))
         self.pushButton_img_2.setText("")
-        self.servicio_tittle.setText(QCoreApplication.translate("add_edit_menu", u"SERVICIOS PROGRAMADOS & PRODUCTOS", None))
+        self.servicio_tittle.setText(QCoreApplication.translate("add_edit_menu", u"SERVICIOS PROGRAMADOS / PRODUCTOS", None))
         self.add_producto_pushButton.setText("")
         self.monto_tittle.setText(QCoreApplication.translate("add_edit_menu", u"MONTO", None))
         self.label.setText(QCoreApplication.translate("add_edit_menu", u"SE\u00d1A", None))

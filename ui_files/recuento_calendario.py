@@ -18,7 +18,6 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QCalendarWidget, QFrame, QGridLayout,
     QHBoxLayout, QLabel, QLineEdit, QSizePolicy,
     QToolButton, QVBoxLayout, QWidget)
-
 from ui_files import icons
 
 class RecuentoDetailWindow(object):
@@ -362,6 +361,61 @@ class RecuentoDetailWindow(object):
 
         self.verticalLayout_4.addWidget(self.frame_8)
 
+        self.frame_table = QFrame(self.frame_5)
+        self.frame_table.setObjectName(u"frame_table")
+        self.frame_table.setMinimumSize(QSize(0, 75))
+        self.frame_table.setStyleSheet(u"background-color: rgb(67, 67, 67);\n"
+"border-radius: 15px;")
+        self.frame_table.setFrameShape(QFrame.StyledPanel)
+        self.frame_table.setFrameShadow(QFrame.Raised)
+        self.gridLayout_2 = QGridLayout(self.frame_table)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.total_monto_pendiente_edit = QLabel(self.frame_table)
+        self.total_monto_pendiente_edit.setObjectName(u"total_monto_pendiente_edit")
+        self.total_monto_pendiente_edit.setStyleSheet(u"color: rgb(230, 230, 230);\n"
+"font:  9pt \"Segoe UI Black\";")
+
+        self.gridLayout_2.addWidget(self.total_monto_pendiente_edit, 0, 3, 1, 1)
+
+        self.total_pendiente_cobro_edit = QLabel(self.frame_table)
+        self.total_pendiente_cobro_edit.setObjectName(u"total_pendiente_cobro_edit")
+        self.total_pendiente_cobro_edit.setStyleSheet(u"color: rgb(170, 0, 0);\n"
+"font: 87 9pt \"Segoe UI Black\";")
+
+        self.gridLayout_2.addWidget(self.total_pendiente_cobro_edit, 0, 5, 1, 1)
+
+        self.total_pendiente_cobro_label = QLabel(self.frame_table)
+        self.total_pendiente_cobro_label.setObjectName(u"total_pendiente_cobro_label")
+        self.total_pendiente_cobro_label.setStyleSheet(u"color: rgb(255, 255, 0);\n"
+"font: 87 9pt \"Segoe UI Black\";")
+
+        self.gridLayout_2.addWidget(self.total_pendiente_cobro_label, 0, 4, 1, 1)
+
+        self.total_monto_segna_label = QLabel(self.frame_table)
+        self.total_monto_segna_label.setObjectName(u"total_monto_segna_label")
+        self.total_monto_segna_label.setStyleSheet(u"color: rgb(255, 255, 0);\n"
+"font: 87 9pt \"Segoe UI Black\";")
+
+        self.gridLayout_2.addWidget(self.total_monto_segna_label, 0, 2, 1, 1)
+
+        self.total_monto_label = QLabel(self.frame_table)
+        self.total_monto_label.setObjectName(u"total_monto_label")
+        self.total_monto_label.setStyleSheet(u"color: rgb(255, 255, 0);\n"
+"font: 87 9pt \"Segoe UI Black\";\n"
+"")
+
+        self.gridLayout_2.addWidget(self.total_monto_label, 0, 7, 1, 1)
+
+        self.total_monto_edit = QLabel(self.frame_table)
+        self.total_monto_edit.setObjectName(u"total_monto_edit")
+        self.total_monto_edit.setStyleSheet(u"color: rgb(230, 230, 230);\n"
+"font: 87 9pt \"Segoe UI Black\";")
+
+        self.gridLayout_2.addWidget(self.total_monto_edit, 0, 8, 1, 1)
+
+
+        self.verticalLayout_4.addWidget(self.frame_table)
+
 
         self.horizontalLayout.addWidget(self.frame_5)
 
@@ -407,7 +461,13 @@ class RecuentoDetailWindow(object):
         self.transfe_segna_namelabel.setText(QCoreApplication.translate("DetailWindow", u"SE\u00d1AS T.BANCARIA :", None))
         self.transfe_segna_label.setText("")
         self.gastos_namelabel.setText(QCoreApplication.translate("DetailWindow", u"GASTOS DEL DIA:", None))
-        self.total_namelabel.setText(QCoreApplication.translate("DetailWindow", u"TOTAL:", None))
+        self.total_namelabel.setText(QCoreApplication.translate("DetailWindow", u"TOTAL sin Se\u00f1as:", None))
         self.total_label.setText("")
+        self.total_monto_pendiente_edit.setText("")
+        self.total_pendiente_cobro_edit.setText("")
+        self.total_pendiente_cobro_label.setText(QCoreApplication.translate("DetailWindow", u"Total Pendiente de Cobro:", None))
+        self.total_monto_segna_label.setText(QCoreApplication.translate("DetailWindow", u"Total Monto de Se\u00f1as:", None))
+        self.total_monto_label.setText(QCoreApplication.translate("DetailWindow", u"Total Monto:", None))
+        self.total_monto_edit.setText("")
     # retranslateUi
 

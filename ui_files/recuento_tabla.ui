@@ -614,7 +614,7 @@ border-radius: 15px;</string>
 font: 87 16pt &quot;Segoe UI Black&quot;;</string>
                        </property>
                        <property name="text">
-                        <string>TOTAL sin Señas:</string>
+                        <string>TOTAL:</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
@@ -636,92 +636,13 @@ font: 87 16pt &quot;Segoe UI Black&quot;;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QFrame" name="frame_table">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>75</height>
-                     </size>
-                    </property>
+                   <widget class="QTableView" name="tableView">
                     <property name="styleSheet">
-                     <string notr="true">background-color: rgb(67, 67, 67);
-border-radius: 15px;</string>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QGridLayout" name="gridLayout_2">
-                     <item row="0" column="3">
-                      <widget class="QLabel" name="total_monto_pendiente_edit">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(230, 230, 230);
-font:  9pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="5">
-                      <widget class="QLabel" name="total_pendiente_cobro_edit">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(170, 0, 0);
-font: 87 9pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="4">
-                      <widget class="QLabel" name="total_pendiente_cobro_label">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 0);
-font: 87 9pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string>Total Pendiente de Cobro:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="2">
-                      <widget class="QLabel" name="total_monto_segna_label">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 0);
-font: 87 9pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string>Total Monto de Señas:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="7">
-                      <widget class="QLabel" name="total_monto_label">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 0);
-font: 87 9pt &quot;Segoe UI Black&quot;;
+                     <string notr="true">color: rgb(255, 255, 0);
+background-color: rgb(67, 67, 67);
+border-radius: 15px;
 </string>
-                       </property>
-                       <property name="text">
-                        <string>Total Monto:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="8">
-                      <widget class="QLabel" name="total_monto_edit">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(230, 230, 230);
-font: 87 9pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
+                    </property>
                    </widget>
                   </item>
                  </layout>

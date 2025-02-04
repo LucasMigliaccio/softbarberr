@@ -78,18 +78,19 @@ class MainWindowForm(QWidget, MainWindow):
         window.show()
 
     def config_table(self):
-        column_label = ("ID","IMAGEN", "FECHA","CLIENTE(id)", "MONTO", "BARBERO(id)", "SERVICIOS", "TRANSACCIÓN","ESTADO","") 
+        column_label = ("ID","IMAGEN", "FECHA","CLIENTE(id)", "MONTO", "SEÑA", "BARBERO(id)", "SERVICIOS", "TRANSACCIÓN","ESTADO","") 
         self.infopedidos_table.setColumnCount(len(column_label))
         self.infopedidos_table.setHorizontalHeaderLabels(column_label)
         self.infopedidos_table.setColumnWidth(1,200) #img
         self.infopedidos_table.setColumnWidth(2,120) #fecha
         self.infopedidos_table.setColumnWidth(3,120) #cliente cambiar id por innerjoin de nombre + apellido
         self.infopedidos_table.setColumnWidth(4,120) #monto
-        self.infopedidos_table.setColumnWidth(5,120) #barbero cambiar id por innerjoin de nombre + apellido
-        self.infopedidos_table.setColumnWidth(6,120) #servicios
-        self.infopedidos_table.setColumnWidth(7,120) #metodo pago
-        self.infopedidos_table.setColumnWidth(8,120) #estado
-        self.infopedidos_table.setColumnWidth(9,110) #buttons
+        self.infopedidos_table.setColumnWidth(5,120) #seña
+        self.infopedidos_table.setColumnWidth(6,120) #barbero cambiar id por innerjoin de nombre + apellido
+        self.infopedidos_table.setColumnWidth(7,120) #servicios
+        self.infopedidos_table.setColumnWidth(8,120) #metodo pago
+        self.infopedidos_table.setColumnWidth(9,120) #estado
+        self.infopedidos_table.setColumnWidth(10,110) #buttons
         self.infopedidos_table.verticalHeader().setDefaultSectionSize(150)
         self.infopedidos_table.setColumnHidden(0, True)
         self.infopedidos_table.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -107,7 +108,7 @@ class MainWindowForm(QWidget, MainWindow):
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem("$ " + str(cell))
                     )
-                elif index_cell == 6:  # Columna de ServiciosProgramados
+                elif index_cell == 7:  # Columna de ServiciosProgramados
                     try:
                         servicios_programados = json.loads(cell)  # Convertir JSON a lista de servicios
                         if isinstance(servicios_programados, list) and len(servicios_programados) > 0:
@@ -131,7 +132,7 @@ class MainWindowForm(QWidget, MainWindow):
             
             # Agregar un botón de acción en la columna 9
             self.infopedidos_table.setCellWidget(
-                index_row, 9, self.build_action_button()
+                index_row, 10, self.build_action_button()
             )
         
         # Agregar el botón "Cargar más" en la última fila
@@ -204,6 +205,7 @@ class MainWindowForm(QWidget, MainWindow):
 
         if button:
             cita_id = self.get_cita_id_from_table(table, button)
+            print("print cita_id de mainwindow:", cita_id)
             self.open_edit_window_cita(cita_id)
 
     def delete_cita(self):
@@ -220,7 +222,7 @@ class MainWindowForm(QWidget, MainWindow):
             
             if fetched_images and img_path_to_compare in (img[0] for img in fetched_images):
                 if citas.delete(cita_id):
-                    self.remove_img(data[8])
+                    self.remove_img(data[9])
                     self.set_table_data()
             else:
                 if citas.delete(cita_id):

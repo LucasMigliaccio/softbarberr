@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
-    <height>655</height>
+    <width>889</width>
+    <height>671</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -291,7 +291,7 @@ font: 87 italic 18pt &quot;Segoe UI Black&quot;;</string>
                   <number>32764</number>
                  </property>
                  <property name="placeholderText">
-                  <string>(DD-MM-AAAA)</string>
+                  <string> (DD-MM-AAAA)</string>
                  </property>
                  <property name="cursorMoveStyle">
                   <enum>Qt::LogicalMoveStyle</enum>
@@ -325,21 +325,6 @@ font: 87 italic 18pt &quot;Segoe UI Black&quot;;</string>
                   <enum>QFrame::Raised</enum>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_4">
-                  <property name="spacing">
-                   <number>6</number>
-                  </property>
-                  <property name="leftMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
-                  </property>
                   <item>
                    <widget class="QFrame" name="frame_3">
                     <property name="styleSheet">
@@ -352,41 +337,92 @@ border-radius: 15px;</string>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
                     </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_2">
-                     <item>
-                      <widget class="QLabel" name="mp_ico_label">
-                       <property name="styleSheet">
-                        <string notr="true">image: url(:/imagess/mercadopago.png);</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="mp_namelabel">
-                       <property name="styleSheet">
-                        <string notr="true">
+                    <widget class="QLabel" name="mp_ico_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>11</x>
+                       <y>11</y>
+                       <width>16</width>
+                       <height>16</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">image: url(:/prefijoNuevo/assets/icons/mercadopago.png);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="mp_namelabel">
+                     <property name="geometry">
+                      <rect>
+                       <x>109</x>
+                       <y>11</y>
+                       <width>242</width>
+                       <height>37</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
 color: rgb(255, 255, 0);
 font: 87 16pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string>MERCADO PAGO :</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="mp_label">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(230, 230, 230);
+                     </property>
+                     <property name="text">
+                      <string>MERCADO PAGO :</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="mp_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>358</x>
+                       <y>11</y>
+                       <width>17</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(230, 230, 230);
 font: 87 16pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="mp_segna_namelabel">
+                     <property name="geometry">
+                      <rect>
+                       <x>457</x>
+                       <y>11</y>
+                       <width>227</width>
+                       <height>37</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
+color: rgb(255, 255, 0);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string>SEÑAS M.PAGO :</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="mp_segna_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>691</x>
+                       <y>11</y>
+                       <width>91</width>
+                       <height>43</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(230, 230, 230);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
                    </widget>
                   </item>
                   <item>
@@ -401,41 +437,192 @@ border-radius: 15px;</string>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
                     </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout">
-                     <item>
-                      <widget class="QLabel" name="efec_ico_label">
-                       <property name="styleSheet">
-                        <string notr="true">image: url(:/imagess/efectivo.png);</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="efec_namelabel">
-                       <property name="styleSheet">
-                        <string notr="true">
+                    <widget class="QLabel" name="efec_ico_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>11</x>
+                       <y>11</y>
+                       <width>16</width>
+                       <height>16</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">image: url(:/prefijoNuevo/assets/icons/efectivo.png);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="efec_namelabel">
+                     <property name="geometry">
+                      <rect>
+                       <x>137</x>
+                       <y>11</y>
+                       <width>145</width>
+                       <height>37</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
 color: rgb(255, 255, 0);
 font: 87 16pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string>EFECTIVO :</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="efec_label">
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(230, 230, 230);
+                     </property>
+                     <property name="text">
+                      <string>EFECTIVO :</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="efec_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>289</x>
+                       <y>11</y>
+                       <width>17</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(230, 230, 230);
 font: 87 16pt &quot;Segoe UI Black&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="efec_segna_label_">
+                     <property name="geometry">
+                      <rect>
+                       <x>663</x>
+                       <y>11</y>
+                       <width>17</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(230, 230, 230);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="efec_segna_namelabel">
+                     <property name="geometry">
+                      <rect>
+                       <x>416</x>
+                       <y>11</y>
+                       <width>240</width>
+                       <height>37</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
+color: rgb(255, 255, 0);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string>SEÑAS EFECTIVO :</string>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_6">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(67, 67, 67);
+border-radius: 15px;</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <widget class="QLabel" name="transfe_ico_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>11</x>
+                       <y>11</y>
+                       <width>16</width>
+                       <height>16</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">image: url(:/prefijoNuevo/assets/icons/banco.png);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="transfe_namelabel">
+                     <property name="geometry">
+                      <rect>
+                       <x>111</x>
+                       <y>11</y>
+                       <width>180</width>
+                       <height>37</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
+color: rgb(255, 255, 0);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string>T.BANCARIA:</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="transfe_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>298</x>
+                       <y>11</y>
+                       <width>17</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(230, 230, 230);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="transfe_segna_namelabel">
+                     <property name="geometry">
+                      <rect>
+                       <x>399</x>
+                       <y>11</y>
+                       <width>283</width>
+                       <height>37</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
+color: rgb(255, 255, 0);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string>SEÑAS T.BANCARIA :</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="transfe_segna_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>689</x>
+                       <y>11</y>
+                       <width>17</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(230, 230, 230);
+font: 87 16pt &quot;Segoe UI Black&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
                    </widget>
                   </item>
                   <item>
@@ -546,7 +733,7 @@ font: 87 16pt &quot;Segoe UI Black&quot;;</string>
   </layout>
  </widget>
  <resources>
-  <include location="L:/AngelCuk/ui_files/logo.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>

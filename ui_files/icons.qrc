@@ -1,6 +1,7 @@
 <RCC>
   <qresource prefix="prefijoNuevo">
     <file>../assets/icons/cancel.png</file>
+    <file>../assets/icons/banco.png</file>
     <file>../assets/icons/close-window.png</file>
     <file>../assets/icons/delete.png</file>
     <file>../assets/icons/edit.png</file>

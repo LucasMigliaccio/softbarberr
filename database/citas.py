@@ -4,9 +4,9 @@ from database.connection import create_connection
 
 def insert(data):
     conn= create_connection()
-    sql = """INSERT INTO citas (ClienteID, EmpleadoID, FechaHora, Monto, 
+    sql = """INSERT INTO citas (ClienteID, EmpleadoID, FechaHora, Monto, Seña, 
                                 MetodoPago, ServiciosProgramados, Estado, Img_path)
-            VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
     try:
         cur= conn.cursor()
@@ -22,12 +22,14 @@ def insert(data):
 
 def select_by_id(_id):
     conn= create_connection()
-    sql = f"""SELECT 
+    sql = f"""
+    SELECT 
     citas.CitaID,
     clientes.Nombre AS ClienteNombre,
     empleados.Nombre AS EmpleadoNombre,
     citas.FechaHora,
     citas.Monto,
+    citas.Seña,
     citas.ServiciosProgramados,
     citas.MetodoPago,
     citas.Estado,
@@ -35,26 +37,26 @@ def select_by_id(_id):
     clientes.Telefono AS ClienteTelefono,
     clientes.Direccion AS ClienteDireccion
 FROM 
-    citas
+    barberiadb.citas
 INNER JOIN 
     clientes ON citas.ClienteID = clientes.ClienteID
 INNER JOIN 
     empleados ON citas.EmpleadoID = empleados.EmpleadoID WHERE CitaID = {_id}"""
     try:
-        cur= conn.cursor()
+        cur = conn.cursor()
         cur.execute(sql)
-        citas=cur.fetchone()
+        citas = cur.fetchone()
         return citas
     except connector.Error as err:
-        print(f"Error at select_by_id function: {err.msg}")
-        return False
+        print(f"Error en la función select_by_id: {err.msg}")
+        return None  # Retornar None en lugar de False
     finally:
         cur.close()
         conn.close()
 
 def select_all():
     conn= create_connection()
-    sql = """SELECT citas.CitaID, citas.img_path, citas.FechaHora, citas.ClienteID, citas.Monto, citas.EmpleadoID, citas.ServiciosProgramados, citas.MetodoPago, citas.Estado FROM citas ORDER BY FechaHora DESC"""
+    sql = """SELECT citas.CitaID, citas.img_path, citas.FechaHora, citas.ClienteID, citas.Monto, citas.Seña, citas.EmpleadoID, citas.ServiciosProgramados, citas.MetodoPago, citas.Estado FROM citas ORDER BY FechaHora DESC"""
     try:
         cur= conn.cursor()
         cur.execute(sql)
@@ -78,6 +80,7 @@ def select_all_join():
     citas.FechaHora,
     clientes.Nombre AS ClienteNombre,
     citas.Monto,
+    citas.Seña,
     empleados.Nombre AS EmpleadoNombre,
     citas.ServiciosProgramados,
     citas.MetodoPago,
@@ -108,6 +111,7 @@ def select_all_join_tableview_complete():
     citas.FechaHora,
     clientes.Nombre AS ClienteNombre,
     citas.Monto,
+    citas.Seña,
     empleados.Nombre AS EmpleadoNombre,
     citas.ServiciosProgramados,
     citas.MetodoPago,
@@ -139,7 +143,8 @@ def update(_id,data):
             ClienteID = %s,
             EmpleadoID = %s,
             FechaHora = %s,
-            Monto = %s, 
+            Monto = %s,
+            Seña = %s, 
             MetodoPago = %s, 
             ServiciosProgramados = %s, 
             Estado = %s,

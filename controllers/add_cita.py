@@ -47,6 +47,7 @@ class AddWindowForm(QWidget, AddEditMenu):
         barbero = self.leave_id_alone_barbero()
         fechayhora =self.fechahora_dateTimeEdit.dateTime()
         monto = self.monto_lineEdit.text()
+        seña = self.lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
         servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
         servicios_programados_json = json.dumps(servicios_programados)
@@ -58,7 +59,7 @@ class AddWindowForm(QWidget, AddEditMenu):
         img= self.img_path_to
         fechayhora_string = fechayhora.toString("yyyy-MM-dd HH:mm:ss")
 
-        data = (cliente, barbero, fechayhora_string, monto, metodo_pago,
+        data = (cliente, barbero, fechayhora_string, monto, seña, metodo_pago,
                 servicios_programados_json, estado, img)
 
         if citas.insert(data):
@@ -83,8 +84,15 @@ class AddWindowForm(QWidget, AddEditMenu):
         self.barbero_comboBox.clear()
         self.cliente_comboBox.clear()
         self.monto_lineEdit.clear()
+        self.lineEdit.clear()
         self.pago_comboBox.clear()
         self.estado_comboBox.clear()
+
+    def segna_none(self):
+        segna = self.lineEdit
+        if segna == None:
+            self.lineEdit.setText("0")
+    
 
     def leave_id_alone_cliente(self):        
         cliente_id = str(self.cliente_comboBox.currentText())
