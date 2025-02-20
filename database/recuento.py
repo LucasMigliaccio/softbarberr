@@ -66,16 +66,24 @@ def filtro_mp_dia(fecha):
 def cierre_caja_dia_segnas(fecha):
     conn = create_connection()
     sql = f"""
-        SELECT 
-        MetodoPago,
-        SUM(CASE WHEN Estado != 'cancelado' THEN Monto ELSE 0 END) AS monto,
-        SUM(CASE WHEN Estado = 'completado' THEN Monto ELSE 0 END) AS monto_abonado,
-        SUM(CASE WHEN Estado = 'completado' THEN Seña ELSE 0 END) AS total_señas_abonadas,
-        SUM(CASE WHEN Estado = 'pendiente' THEN Seña ELSE 0 END) AS total_señas_,
-        SUM(CASE WHEN Estado = 'pendiente' THEN (monto - seña) ELSE 0 END) AS total_pendiente_cobro
-    FROM barberiadb.citas
-    WHERE DATE(FechaHora) =  '{fecha}'
-    GROUP BY MetodoPago;
+    SELECT 
+    COALESCE(m.MetodoPago, 'Sin datos') AS MetodoPago,
+    COALESCE(SUM(CASE WHEN c.Estado != 'cancelado' THEN c.Monto ELSE 0 END), 0) AS monto,
+    COALESCE(SUM(CASE WHEN c.Estado = 'completado' THEN c.Monto ELSE 0 END), 0) AS monto_abonado,
+    COALESCE(SUM(CASE WHEN c.Estado = 'completado' THEN c.Seña ELSE 0 END), 0) AS total_señas_abonadas,
+    COALESCE(SUM(CASE WHEN c.Estado = 'pendiente' THEN c.Seña ELSE 0 END), 0) AS total_señas_,
+    COALESCE(SUM(CASE WHEN c.Estado = 'pendiente' THEN (c.Monto - c.Seña) ELSE 0 END), 0) AS total_pendiente_cobro
+FROM 
+    (SELECT DISTINCT MetodoPago FROM barberiadb.citas) m
+LEFT JOIN 
+    barberiadb.citas c
+ON 
+    m.MetodoPago = c.MetodoPago
+AND 
+    DATE(c.FechaHora) = '{fecha}'
+GROUP BY 
+    m.MetodoPago;
+
     """
     try:
         cur = conn.cursor()

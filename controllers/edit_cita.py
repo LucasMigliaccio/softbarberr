@@ -128,7 +128,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.set_current_pago_cb(data[7])
         self.set_current_estado_cb(data[8])
 
-        img_name = data[8].split("\\")[-1]
+        img_name = data[9].split("\\")[-1]
 
         self.old_image = img_name
         self.new_img = img_name

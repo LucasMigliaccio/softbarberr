@@ -7,6 +7,7 @@ from views.general_custom_ui import GeneralCustomUi
 from database import recuento
 
 import pandas as pd
+from decimal import Decimal
 
 
 class RecuentoForm(QWidget, RecuentoDetailWindow):
@@ -21,7 +22,7 @@ class RecuentoForm(QWidget, RecuentoDetailWindow):
 
         self.selected_date_str = None
 
-        self.calendarWidget.clicked.connect(self.obtener_fecha_seleccionada)
+        self.calendarWidget.clicked.connect(self.obtener_cierre_segnas)
 
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
@@ -60,9 +61,9 @@ class RecuentoForm(QWidget, RecuentoDetailWindow):
         self.mp_label.setText(mp)
         self.transfe_label.setText(transfer)
 
-        self.efec_segna_label_.setText()
-        self.mp_segna_label.setText()
-        self.transfe_segna_label.setText()
+        self.efec_segna_label_.setText(segna_efectivo)
+        self.mp_segna_label.setText(segna_mp)
+        self.transfe_segna_label.setText(segna_transfer)
         
         transfer = int(transfer)
         efectivo = int(efectivo)
@@ -86,32 +87,86 @@ class RecuentoForm(QWidget, RecuentoDetailWindow):
     def obtener_cierre_segnas(self):
         selected_date = self.calendarWidget.selectedDate()
         self.selected_date_str = selected_date.toString("yyyy-MM-dd")
+        #data = recuento.filtro_efectivo_dia(self.selected_date_str)
+        #total_pagado_efectivo =str(data[0])
+        #print (total_pagado_efectivo)
         fecha = self.selected_date_str
         cierre = recuento.cierre_caja_dia_segnas(fecha)
 
-        # Convertimos a DataFrame
-        columns = ["Método de Pago", "Monto", "Total Señas", "Señas Abonadas", "Total Pendiente Cobro"]
+        # Conversion a dataFrame
+        columns = ["Método de Pago", "Monto", "Monto Abonado", "Total Señas", "Señas Abonadas", "Total Pendiente Cobro"]
         df = pd.DataFrame(cierre, columns=columns)
 
-        # Extraer primera y segunda fila (si existen)
+        # Extraer primera y segunda fila
         if len(df) > 0:
             primera_fila = df.iloc[0].to_dict() 
         if len(df) > 1:
             segunda_fila = df.iloc[1].to_dict()
+        if len(df) > 2:
+            tercer_fila = df.iloc[2].to_dict()
 
 
         # Extraer datos específicos en variables
-        metodo_pago = primera_fila["Método de Pago"]
-        total_monto = primera_fila["Monto"]
-        total_segna = primera_fila["Total Señas"]
-        segna_abonada = primera_fila["Señas Abonadas"]
-        pendiente_cobro = primera_fila["Total Pendiente Cobro"]
+        metodo_pago_efectivo = primera_fila["Método de Pago"]
+        total_monto_efectivo = primera_fila["Monto"]
+        total_monto_abonado_efectivo = primera_fila["Monto Abonado"]
+        total_segna_efectivo = primera_fila["Total Señas"]
+        segna_abonada_efectivo = primera_fila["Señas Abonadas"]
+        pendiente_cobro_efectivo = primera_fila["Total Pendiente Cobro"]
 
-        metodo_pago_mp = segunda_fila["Método de Pago"]
-        total_monto_mp = segunda_fila["Monto"]
-        total_segna_mp = segunda_fila["Total Señas"]
-        segna_abonada_mp = segunda_fila["Señas Abonadas"]
-        pendiente_cobro_mp = segunda_fila["Total Pendiente Cobro"]
+        metodo_pago_transfe = segunda_fila["Método de Pago"]
+        total_monto_transfe = segunda_fila["Monto"]
+        total_monto_abonado_transfe = segunda_fila["Monto Abonado"]
+        total_segna_transfe = segunda_fila["Total Señas"]
+        segna_abonada_transfe = segunda_fila["Señas Abonadas"]
+        pendiente_cobro_transfe = segunda_fila["Total Pendiente Cobro"]
+
+        metodo_pago_mp = tercer_fila["Método de Pago"]
+        total_monto_mp = tercer_fila["Monto"]
+        total_monto_abonado_mp = tercer_fila["Monto Abonado"]
+        total_segna_mp = tercer_fila["Total Señas"]
+        segna_abonada_mp = tercer_fila["Señas Abonadas"]
+        pendiente_cobro_mp = tercer_fila["Total Pendiente Cobro"]
+
+        # monto  general sin distinguir seña
+        total_monto_efectivo = int(total_monto_efectivo)
+        
+        total_monto_mp = int(total_monto_mp)
+        total_monto_transfe = int(total_monto_transfe)
+        total_monto_todos_medios = (total_monto_efectivo + total_monto_mp + total_monto_transfe)
+
+        # total de señas  en estado pendiente
+        segna_abonada_mp = int(segna_abonada_mp)
+        segna_abonada_efectivo = int(segna_abonada_efectivo)
+        segna_abonada_transfe = int(segna_abonada_transfe)
+        total_segnas_en_estado_pendiente = (segna_abonada_mp + segna_abonada_efectivo + segna_abonada_transfe)
+
+        # señas pendientes
+        total_monto_abonado_efectivo = int(total_monto_abonado_efectivo)
+        total_monto_abonado_mp = int(total_monto_abonado_mp)
+        total_monto_abonado_transfe = int(total_monto_abonado_transfe)
+        total_monto_abonado_completado = (total_monto_abonado_efectivo + total_monto_abonado_mp + total_monto_abonado_transfe)
+
+        # pendiente de cobro       
+        pendiente_cobro_efectivo = int(pendiente_cobro_efectivo)
+        pendiente_cobro_mp = int(pendiente_cobro_mp)
+        pendiente_cobro_transfe = int(pendiente_cobro_transfe)
+        total_pendientes_todos_medios = (pendiente_cobro_efectivo + pendiente_cobro_mp + pendiente_cobro_transfe)
+
+
+        #fill inputs 
+        self.efec_label.setText(str(total_monto_abonado_efectivo))
+        self.mp_label.setText(str(total_monto_abonado_mp))
+        self.transfe_label.setText(str(total_monto_abonado_transfe))
+
+        self.efec_segna_label_.setText(str(segna_abonada_efectivo))
+        self.mp_segna_label.setText(str(segna_abonada_mp))
+        self.transfe_segna_label.setText(str(segna_abonada_transfe))
+
+        self.total_pendiente_cobro_edit.setText(str(total_pendientes_todos_medios))       
+        self.total_label.setText(str(total_monto_abonado_completado))
+        self.total_monto_edit.setText(str(total_monto_todos_medios))
+
 
     def put_efectivo(self):
         """Utiliza la fecha seleccionada almacenada."""
