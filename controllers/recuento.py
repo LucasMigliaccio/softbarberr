@@ -165,7 +165,15 @@ class RecuentoForm(QWidget, RecuentoDetailWindow):
 
         self.total_pendiente_cobro_edit.setText(str(total_pendientes_todos_medios))       
         self.total_label.setText(str(total_monto_abonado_completado))
+        
+        gastos = self.gastos_lineEdit.text()
+        if gastos != "":
+            gastos = int(gastos)
+            total_monto_abonado_completado = (total_monto_abonado_completado - gastos)
+            self.total_label.setText(str(total_monto_abonado_completado))
+
         self.total_monto_edit.setText(str(total_monto_todos_medios))
+        self.total_monto_pendiente_edit.setText(str(total_monto_todos_medios))
 
 
     def put_efectivo(self):

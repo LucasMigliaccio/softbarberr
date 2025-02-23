@@ -19,6 +19,8 @@ from controllers.view_cliente import ViewClienteWindowForm
 from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.view_productos import ViewProductoWindowForm
 from controllers.view_citas_full import ViewCitasFullForm
+from controllers.agenda import AgendaWindowForm
+
 from database import citas
 
 class MainWindowForm(QWidget, MainWindow):
@@ -35,6 +37,7 @@ class MainWindowForm(QWidget, MainWindow):
         self.search_line_edit.returnPressed.connect(self.search)
         self.search_line_edit.textChanged.connect(self.restore_table_data)
         self.co_pushButton_pedidos.clicked.connect(self.open_horarios_window)
+        self.pushButton_8.clicked.connect(self.open_agenda_view)
 
         self.recuento_button.clicked.connect(self.open_recuento_view)
         self.op_pushButton_cliente.clicked.connect(self.open_clientes_view)
@@ -76,6 +79,12 @@ class MainWindowForm(QWidget, MainWindow):
     def open_load_more_citas_view(self):
         window = ViewCitasFullForm(self)
         window.show()
+
+    def open_agenda_view(self):
+        window = AgendaWindowForm(self)
+        window.show()
+
+    
 
     def config_table(self):
         column_label = ("ID","IMAGEN", "FECHA","CLIENTE(id)", "MONTO", "SEÑA", "BARBERO(id)", "SERVICIOS", "TRANSACCIÓN","ESTADO","") 
