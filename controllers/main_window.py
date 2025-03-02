@@ -19,7 +19,8 @@ from controllers.view_cliente import ViewClienteWindowForm
 from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.view_productos import ViewProductoWindowForm
 from controllers.view_citas_full import ViewCitasFullForm
-from controllers.agenda import AgendaWindowForm
+#from controllers.agenda import AgendaWindowForm
+from controllers.prueba_agenda import AgendaWindowForm
 
 from database import citas
 

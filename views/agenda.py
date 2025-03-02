@@ -16,16 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCalendarWidget, QFrame, QGridLayout,
-    QHBoxLayout, QLabel, QSizePolicy, QToolButton,
-    QVBoxLayout, QWidget)
-#import icons_rc
-
+    QHBoxLayout, QHeaderView, QLabel, QSizePolicy,
+    QSpacerItem, QTableView, QToolButton, QVBoxLayout,
+    QWidget)
 
 class Agenda(object):
     def setupUi(self, DetailWindow):
         if not DetailWindow.objectName():
             DetailWindow.setObjectName(u"DetailWindow")
-        DetailWindow.resize(923, 870)
+        DetailWindow.resize(1054, 728)
         self.gridLayout = QGridLayout(DetailWindow)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -109,34 +108,6 @@ class Agenda(object):
         self.verticalLayout_2.setSpacing(3)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.frame = QFrame(self.content_frame)
-        self.frame.setObjectName(u"frame")
-        self.frame.setMinimumSize(QSize(0, 25))
-        self.frame.setMaximumSize(QSize(16777215, 15))
-        self.frame.setStyleSheet(u"background-color: rgb(21, 21, 21);")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.frame)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(-1, 0, -1, 4)
-        self.label = QLabel(self.frame)
-        self.label.setObjectName(u"label")
-        self.label.setMinimumSize(QSize(0, 20))
-        self.label.setMaximumSize(QSize(16777215, 20))
-        font1 = QFont()
-        font1.setFamilies([u"Segoe UI Black"])
-        font1.setPointSize(12)
-        font1.setBold(True)
-        self.label.setFont(font1)
-        self.label.setStyleSheet(u"\n"
-"color: rgb(255, 255, 0);")
-        self.label.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_3.addWidget(self.label)
-
-
-        self.verticalLayout_2.addWidget(self.frame)
-
         self.calendarWidget = QCalendarWidget(self.content_frame)
         self.calendarWidget.setObjectName(u"calendarWidget")
         self.calendarWidget.setMaximumSize(QSize(16777215, 300))
@@ -172,8 +143,15 @@ class Agenda(object):
 "border-radius: 15px;")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_8)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_2 = QHBoxLayout(self.frame_8)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.pendientes_tableView = QTableView(self.frame_8)
+        self.pendientes_tableView.setObjectName(u"pendientes_tableView")
+        self.pendientes_tableView.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
+
+        self.horizontalLayout_2.addWidget(self.pendientes_tableView)
+
 
         self.verticalLayout_4.addWidget(self.frame_8)
 
@@ -184,8 +162,22 @@ class Agenda(object):
 "border-radius: 15px;")
         self.frame_table.setFrameShape(QFrame.StyledPanel)
         self.frame_table.setFrameShadow(QFrame.Raised)
-        self.gridLayout_2 = QGridLayout(self.frame_table)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.horizontalLayout_3 = QHBoxLayout(self.frame_table)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalSpacer_3 = QSpacerItem(458, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
+
+        self.label_second_frame = QLabel(self.frame_table)
+        self.label_second_frame.setObjectName(u"label_second_frame")
+        self.label_second_frame.setStyleSheet(u"color: rgb(230, 230, 230);")
+
+        self.horizontalLayout_3.addWidget(self.label_second_frame)
+
+        self.horizontalSpacer_4 = QSpacerItem(458, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
+
 
         self.verticalLayout_4.addWidget(self.frame_table)
 
@@ -217,6 +209,6 @@ class Agenda(object):
         self.restore_button.setText(QCoreApplication.translate("DetailWindow", u"...", None))
         self.maximize_button.setText(QCoreApplication.translate("DetailWindow", u"...", None))
         self.close_button.setText(QCoreApplication.translate("DetailWindow", u"...", None))
-        self.label.setText(QCoreApplication.translate("DetailWindow", u"INGRESA UNA FECHA V\u00c1LIDA", None))
+        self.label_second_frame.setText("")
     # retranslateUi
 
