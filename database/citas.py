@@ -164,16 +164,15 @@ def update(_id,data):
         conn.close()
 
 def select_by_parameter(param):
-    conn= create_connection()
-    param= f"%{param}%"
+    conn = create_connection()
     sql = """SELECT clientes.Nombre, clientes.Apellido, citas.*
-        FROM clientes
-        INNER JOIN citas ON clientes.ClienteID = citas.ClienteID
-        WHERE clientes.Nombre LIKE %s OR clientes.Apellido LIKE %s"""
+             FROM clientes
+             INNER JOIN citas ON clientes.ClienteID = citas.ClienteID
+             WHERE clientes.Nombre LIKE ? OR clientes.Apellido LIKE ?"""
     try:
-        cur= conn.cursor()
-        cur.execute(sql, (param,param))
-        citas=cur.fetchall()
+        cur = conn.cursor()
+        cur.execute(sql, (f"%{param}%", f"%{param}%"))
+        citas = cur.fetchall()
         return citas
     except connector.Error as err:
         print(f"Error at select_by_parameter: {err.msg}")

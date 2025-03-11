@@ -19,8 +19,9 @@ from controllers.view_cliente import ViewClienteWindowForm
 from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.view_productos import ViewProductoWindowForm
 from controllers.view_citas_full import ViewCitasFullForm
-#from controllers.agenda import AgendaWindowForm
-from controllers.prueba_agenda import AgendaWindowForm
+
+from controllers.agenda import AgendaWindowForm
+from controllers.view_venta_x_producto import ViewVentaProductos
 
 from database import citas
 
@@ -39,6 +40,9 @@ class MainWindowForm(QWidget, MainWindow):
         self.search_line_edit.textChanged.connect(self.restore_table_data)
         self.co_pushButton_pedidos.clicked.connect(self.open_horarios_window)
         self.pushButton_8.clicked.connect(self.open_agenda_view)
+        self.pushButton_8.setText("Agenda")
+        self.pushButton_9.clicked.connect(self.open_venta_productos_view)
+        self.pushButton_9.setText("Más Vendidos")
 
         self.recuento_button.clicked.connect(self.open_recuento_view)
         self.op_pushButton_cliente.clicked.connect(self.open_clientes_view)
@@ -85,6 +89,10 @@ class MainWindowForm(QWidget, MainWindow):
         window = AgendaWindowForm(self)
         window.show()
 
+    def open_venta_productos_view(self):
+        window = ViewVentaProductos(self)
+        window.show()
+
     
 
     def config_table(self):
@@ -107,7 +115,9 @@ class MainWindowForm(QWidget, MainWindow):
 
             
     def populate_table(self, data):
-        self.infopedidos_table.setRowCount(len(data) + 1)
+        self.infopedidos_table.clearContents()  # Limpia el contenido de la tabla sin borrar las cabeceras
+        self.infopedidos_table.setRowCount(len(data) + 1)  # Actualiza el número correcto de filas
+
         for index_row, row in enumerate(data):
             for index_cell, cell in enumerate(row):
                 if index_cell == 1:
@@ -120,18 +130,17 @@ class MainWindowForm(QWidget, MainWindow):
                     )
                 elif index_cell == 7:  # Columna de ServiciosProgramados
                     try:
-                        servicios_programados = json.loads(cell)  # Convertir JSON a lista de servicios
+                        servicios_programados = json.loads(cell)
                         if isinstance(servicios_programados, list) and len(servicios_programados) > 0:
-                            # Filtrar solo los nombres de los servicios
                             nombres_servicios = [
                                 servicio.split(" - ")[0] for servicio in servicios_programados
                             ]
-                            servicios_texto = ", ".join(nombres_servicios)  # Unir los nombres en una cadena
+                            servicios_texto = ", ".join(nombres_servicios)
                         else:
                             servicios_texto = "Sin datos"
-                    except (json.JSONDecodeError, TypeError) as e:
+                    except (json.JSONDecodeError, TypeError):
                         servicios_texto = "Error en datos"
-                    
+
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem(servicios_texto)
                     )
@@ -139,20 +148,21 @@ class MainWindowForm(QWidget, MainWindow):
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem(str(cell))
                     )
-            
-            # Agregar un botón de acción en la columna 9
+
+            # Agregar botón de acción
             self.infopedidos_table.setCellWidget(
                 index_row, 10, self.build_action_button()
             )
-        
-        # Agregar el botón "Cargar más" en la última fila
+
+        # Botón "Cargar más" en la última fila
         last_row_index = len(data)
         self.infopedidos_table.setSpan(
             last_row_index, 0, 1, self.infopedidos_table.columnCount()
-        )  # Combina todas las columnas en una
-        load_more_button = QPushButton("Cargar más")  # Botón que puede abrir otra ventana
-        load_more_button.clicked.connect(self.load_more)  # Conectar acción del botón
+        )
+        load_more_button = QPushButton("Cargar más")
+        load_more_button.clicked.connect(self.load_more)
         self.infopedidos_table.setCellWidget(last_row_index, 0, load_more_button)
+
 
     def load_more(self):
         self.open_load_more_citas_view()
@@ -171,11 +181,13 @@ class MainWindowForm(QWidget, MainWindow):
             self.set_table_data()
 
     def search(self):
-        param = self.search_line_edit.text()
-        if param != "":
-            data =citas.select_by_parameter(param)
+        param = self.search_line_edit.text().strip()  # Elimina espacios innecesarios
+        if param:
+            data = citas.select_by_parameter(param)
             self.populate_table(data)
-
+        else:
+            self.populate_table([]) 
+ 
     def build_action_button(self):
         view_button=components.Butonn("view","#17A288")
         edit_button=components.Butonn("edit","#007BFF")

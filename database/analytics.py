@@ -5,15 +5,16 @@ from database.connection import create_connection
 
 def select_all():
     conn= create_connection()
-    sql = """SELECT CitaID, ClienteID, EmpleadoID, FechaHora, Monto, 
-                                MetodoPago, ServiciosProgramados, Seña Estado FROM cita"""
+    sql = """SELECT CitaID, ClienteID, EmpleadoID, FechaHora, Monto, ServiciosProgramados, MetodoPago, Estado, Seña FROM citas"""
     try:
         cursor= conn.cursor()
         cursor.execute(sql)
-        columns = [col[0] for col in cursor.description]
-        df = pd.DataFrame(cursor.fetchall(), columns=columns)
+        citas=cursor.fetchall()
+        return citas
+        #columns = [col[0] for col in cursor.description]
+        #df = pd.DataFrame(cursor.fetchall(), columns=columns)
 
-        print(df.head())
+        #print(df.head())
     except connector.Error as err:
         print(f"Error at select_all_cita function: {err.msg}")
         return False
@@ -21,4 +22,4 @@ def select_all():
         cursor.close()
         conn.close()
 
-print(select_all())
+print (select_all)

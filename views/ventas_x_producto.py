@@ -18,9 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
     QLabel, QSizePolicy, QTabWidget, QTableView,
     QToolButton, QVBoxLayout, QWidget)
-import icons
 
-class ViewVentaProductos(object):
+
+class ViewProductos(object):
     def setupUi(self, ViewEmpleado):
         if not ViewEmpleado.objectName():
             ViewEmpleado.setObjectName(u"ViewEmpleado")
@@ -86,25 +86,25 @@ class ViewVentaProductos(object):
         self.minimize_button.setObjectName(u"minimize_button")
         self.minimize_button.setGeometry(QRect(0, 0, 22, 22))
         icon = QIcon()
-        icon.addFile(u":/newPrefix/assets/icons/minimize-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u"./assets/icons/minimize-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.minimize_button.setIcon(icon)
         self.restore_button = QToolButton(self.butttons_holder_frame)
         self.restore_button.setObjectName(u"restore_button")
         self.restore_button.setGeometry(QRect(30, 0, 22, 22))
         icon1 = QIcon()
-        icon1.addFile(u":/newPrefix/assets/icons/restore-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(u"./assets/icons/restore-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.restore_button.setIcon(icon1)
         self.maximize_button = QToolButton(self.butttons_holder_frame)
         self.maximize_button.setObjectName(u"maximize_button")
         self.maximize_button.setGeometry(QRect(30, 0, 22, 22))
         icon2 = QIcon()
-        icon2.addFile(u":/newPrefix/assets/icons/maximize-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon2.addFile(u"./assets/icons/maximize-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.maximize_button.setIcon(icon2)
         self.close_button = QToolButton(self.butttons_holder_frame)
         self.close_button.setObjectName(u"close_button")
         self.close_button.setGeometry(QRect(60, 0, 22, 22))
         icon3 = QIcon()
-        icon3.addFile(u":/newPrefix/assets/icons/close-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon3.addFile(u"./assets/icons/close-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.close_button.setIcon(icon3)
 
         self.horizontalLayout_6.addWidget(self.butttons_holder_frame)
@@ -139,16 +139,6 @@ class ViewVentaProductos(object):
         self.horizontalLayout_2.addWidget(self.mas_vendidos_tableView)
 
         self.tabWidget.addTab(self.tab, "")
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.horizontalLayout_3 = QHBoxLayout(self.tab_2)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.menos_vendidostableView = QTableView(self.tab_2)
-        self.menos_vendidostableView.setObjectName(u"menos_vendidostableView")
-
-        self.horizontalLayout_3.addWidget(self.menos_vendidostableView)
-
-        self.tabWidget.addTab(self.tab_2, "")
 
         self.verticalLayout_3.addWidget(self.tabWidget)
 
@@ -190,7 +180,7 @@ class ViewVentaProductos(object):
 
         self.retranslateUi(ViewEmpleado)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(ViewEmpleado)
@@ -204,7 +194,6 @@ class ViewVentaProductos(object):
         self.maximize_button.setText(QCoreApplication.translate("ViewEmpleado", u"...", None))
         self.close_button.setText(QCoreApplication.translate("ViewEmpleado", u"...", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("ViewEmpleado", u"M\u00e1s Vendidos", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("ViewEmpleado", u"Menos Vendidos", None))
         self.total_label.setText("")
     # retranslateUi
 

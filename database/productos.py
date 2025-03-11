@@ -105,3 +105,7 @@ def delete(_id):
     finally:
         cur.close()
         conn.close()
+
+
+def productos_mas_vendidos():
+    pass

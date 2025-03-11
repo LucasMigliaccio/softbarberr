@@ -49,6 +49,7 @@ def select_citas_pendientes():
         cur.execute(sql)
         citas=cur.fetchall()
         return citas
+        
     except connector.Error as err:
         print(f"Error at select_all_cita function: {err.msg}")
         return False

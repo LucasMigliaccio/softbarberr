@@ -1,46 +1,42 @@
+import json
 import pandas as pd
-from PySide6.QtWidgets import QApplication, QMainWindow, QCalendarWidget, QVBoxLayout, QWidget
-from PySide6.QtGui import QTextCharFormat, QColor
-from PySide6.QtCore import QDate
-from database import agenda
+from database import analytics
 
-class CalendarTurnos(QMainWindow):
-    def __init__(self):
-        super().__init__()
+# Obtener los datos de la base de datos
+analytics_data = analytics.select_all()
 
-        self.setWindowTitle("Agenda de Turnos")
-        self.setGeometry(100, 100, 400, 400)
+# Convertir los datos a un DataFrame
+df_data = pd.DataFrame(analytics_data, columns=[
+    "CitaID", "ClienteID", "EmpleadoID", "FechaHora", 
+    "Monto", "ServiciosProgramados", "MetodoPago", "Estado", "Seña"
+])
 
-        self.central_widget = QWidget()
-        self.setCentralWidget(self.central_widget)
-        
-        self.layout = QVBoxLayout(self.central_widget)
+print (df_data)
+print (df_data["ServiciosProgramados"])
+# Función para extraer productos del JSON
+def extraer_productos(productos_json):
+    try:
+        productos = json.loads(productos_json.replace("\\", ""))
+        productos_lista = []
+        for item in productos:
+            nombre = item.split(" - ")[0]
+            cantidad = int(item.split("Cantidad: ")[1].split(",")[0])
+            productos_lista.append((nombre, cantidad))
+        return productos_lista
+    except (json.JSONDecodeError, AttributeError, IndexError, ValueError):
+        return []  # En caso de errores, retorna una lista vacía
 
-        # Widget del calendario
-        self.calendar = QCalendarWidget()
-        self.layout.addWidget(self.calendar)
+# Aplicar la función a cada fila
+productos_expandido = df_data["ServiciosProgramados"].apply(extraer_productos)
 
-        self.turnos_df = agenda.select_agenda()
-        print("TURNOS DF DA; ", self.turnos_df)
+# Unir todos los productos en una lista plana
+todos_los_productos = [item for sublist in productos_expandido for item in sublist]
 
-        if self.turnos_df is not None and not self.turnos_df.empty:
-            self.turnos_df['Fecha'] = pd.to_datetime(self.turnos_df['Fecha']).dt.date
-            self.marcar_fechas()
-        else:
-            print("No hay turnos disponibles o hubo un error al cargar los datos.")
+# Crear un DataFrame con los productos
+df_productos = pd.DataFrame(todos_los_productos, columns=["ServiciosProgramados", "Cantidad"])
 
+# Agrupar y sumar las cantidades
+productos_mas_vendidos = df_productos.groupby("ServiciosProgramados")["Cantidad"].sum().sort_values(ascending=False)
 
-    def marcar_fechas(self):
-        formato = QTextCharFormat()
-        formato.setBackground(QColor("lightblue"))
-        formato.setForeground(QColor("black"))
-
-        for fecha in self.turnos_df['Fecha'].unique():
-            fecha_qdate = QDate.fromString(str(fecha), "yyyy-MM-dd")
-            self.calendar.setDateTextFormat(fecha_qdate, formato)
-
-if __name__ == "__main__":
-    app = QApplication([])
-    ventana = CalendarTurnos()
-    ventana.show()
-    app.exec()
+print("Productos más vendidos:")
+print(productos_mas_vendidos)

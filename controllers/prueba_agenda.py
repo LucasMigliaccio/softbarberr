@@ -30,7 +30,7 @@ class AgendaWindowForm(QWidget, Agenda):
             print("No hay turnos disponibles o hubo un error al cargar los datos.")
 
         
-        #self.pendientes_model = None  # Inicializar vacío
+        self.pendientes_model = None  # Inicializar vacío
         self.init_table_model()
 
     def mousePressEvent(self, event):
