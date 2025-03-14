@@ -164,6 +164,7 @@ class MainWindowForm(QWidget, MainWindow):
         self.infopedidos_table.setCellWidget(last_row_index, 0, load_more_button)
 
 
+
     def load_more(self):
         self.open_load_more_citas_view()
         print("Cargar más filas o abrir ventana adicional.")
@@ -181,12 +182,16 @@ class MainWindowForm(QWidget, MainWindow):
             self.set_table_data()
 
     def search(self):
-        param = self.search_line_edit.text().strip()  # Elimina espacios innecesarios
+        param = self.search_line_edit.text().strip()
         if param:
             data = citas.select_by_parameter(param)
-            self.populate_table(data)
+            if data:  # Solo poblar si hay resultados válidos
+                self.populate_table(data)
+            else:
+                self.populate_table([])  # Limpia la tabla si no hay resultados
         else:
-            self.populate_table([]) 
+            self.populate_table([])  # Limpia si el QLineEdit está vacío
+
  
     def build_action_button(self):
         view_button=components.Butonn("view","#17A288")

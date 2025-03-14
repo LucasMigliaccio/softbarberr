@@ -38,5 +38,5 @@ df_productos = pd.DataFrame(todos_los_productos, columns=["ServiciosProgramados"
 # Agrupar y sumar las cantidades
 productos_mas_vendidos = df_productos.groupby("ServiciosProgramados")["Cantidad"].sum().sort_values(ascending=False)
 
-print("Productos más vendidos:")
 print(productos_mas_vendidos)
+print(type(productos_mas_vendidos))
