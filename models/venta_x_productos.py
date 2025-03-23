@@ -7,7 +7,7 @@ class VentaProductosTableModel(QAbstractTableModel):
         self._data = data.copy() if isinstance(data, pd.DataFrame) else pd.DataFrame()
 
         self._headers = [
-        "ServiciosProgramados", "Cantidad"]
+        "ServiciosProgramados", "Cantidad", "Monto"]
 
     def rowCount(self, parent=QModelIndex()):
         return len(self._data)

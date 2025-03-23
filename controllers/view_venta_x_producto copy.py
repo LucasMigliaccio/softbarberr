@@ -22,27 +22,25 @@ class ViewVentaProductos(QWidget, ViewProductos):
         self.ui = GeneralCustomUi(self)
         self.setWindowFlag(Qt.Window)
 
-        #self.obtener_montos_productos()
         self.init_table_model()
 
 
     def mousePressEvent(self, event):
         self.ui.mouse_press_event(event)
 
-    def extraer_monto(self, productos_json):
+    def extraer_productos(self, productos_json):
         try:
             productos = json.loads(productos_json.replace("\\", ""))
             productos_lista = []
             for item in productos:
                 nombre = item.split(" - ")[0]
                 cantidad = int(item.split("Cantidad: ")[1].split(",")[0])
-                monto = int(item.split("Precio Total: ")[1].split(",")[0])
-                productos_lista.append((nombre, cantidad, monto))
+                productos_lista.append((nombre, cantidad))
             return productos_lista
         except (json.JSONDecodeError, AttributeError, IndexError, ValueError):
             return []  # Si hay errores, retorna una lista vacía
-    
-    def obtener_montos_productos(self):
+
+    def obtener_productos_mas_vendidos(self):
         # Obtener datos desde la base de datos
         analytics_data = analytics.select_all()
         df_data = pd.DataFrame(analytics_data, columns=[
@@ -51,28 +49,27 @@ class ViewVentaProductos(QWidget, ViewProductos):
         ])
 
         # Extraer productos para cada fila
-        productos_expandido = df_data["ServiciosProgramados"].apply(self.extraer_monto)
-        print (productos_expandido)
+        productos_expandido = df_data["ServiciosProgramados"].apply(self.extraer_productos)
 
         # Aplanar la lista de productos
         todos_los_productos = [item for sublist in productos_expandido for item in sublist]
 
         # Crear DataFrame de productos
-        df_productos = pd.DataFrame(todos_los_productos, columns=["ServiciosProgramados", "Cantidad", "Monto"])
+        df_productos = pd.DataFrame(todos_los_productos, columns=["ServiciosProgramados", "Cantidad"])
 
         # Agrupar por producto y sumar cantidades
-        productos_con_monto = df_productos.groupby("ServiciosProgramados")[["Cantidad", "Monto"]].sum().sort_values(by = "Cantidad", ascending=False)
+        productos_mas_vendidos = df_productos.groupby("ServiciosProgramados")["Cantidad"].sum().sort_values(ascending=False)
 
-        return productos_con_monto.reset_index()
+        return productos_mas_vendidos.reset_index()
 
     def init_table_model(self):
         try:
-            df_ventas = self.obtener_montos_productos()
+            df_ventas = self.obtener_productos_mas_vendidos()
             print(df_ventas)
             self.data_ventas_model = VentaProductosTableModel(df_ventas)
             self.mas_vendidos_tableView.setModel(self.data_ventas_model)
         except Exception as e:
             print(f"Error al cargar datos: {e}")
-            empty_model = VentaProductosTableModel(pd.DataFrame(columns=["ServiciosProgramados", "Cantidad", "Monto"]))
+            empty_model = VentaProductosTableModel(pd.DataFrame(columns=["ServiciosProgramados", "Cantidad"]))
             self.mas_vendidos_tableView.setModel(empty_model)
 
