@@ -69,6 +69,7 @@ class CarritoForm(QWidget, CarritoCompras):
         productos_list = []
 
         # Índices de las columnas para nombre, cantidad y precio
+        columna_id = 0
         columna_nombre = 1
         columna_cantidad = 2
         columna_precio = 3
@@ -76,6 +77,7 @@ class CarritoForm(QWidget, CarritoCompras):
         # Recorrer todas las filas de la tabla
         for row in range(model.rowCount()):
             # Obtener los datos de las columnas que nos interesan
+            id = model.index(row, columna_id).data()
             nombre = model.index(row, columna_nombre).data()
             cantidad = model.index(row, columna_cantidad).data()
             precio = model.index(row, columna_precio).data()
@@ -87,6 +89,7 @@ class CarritoForm(QWidget, CarritoCompras):
                 precio_total = precio
             # Crear un diccionario con los datos del producto
             producto = {
+                "ID": id,
                 "Nombre": nombre,
                 "Cantidad": cantidad,
                 "Precio Unidad": precio,

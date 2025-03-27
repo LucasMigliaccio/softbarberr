@@ -169,6 +169,7 @@ class EditWindowForm(QWidget,AddEditMenu):
 
     def leave_id_alone_cliente(self):        
         cliente_id = str(self.cliente_comboBox.currentText())
+        print (cliente_id)
         id = int(cliente_id.split(' ')[0])
         print(type(id))
         return id
@@ -185,11 +186,12 @@ class EditWindowForm(QWidget,AddEditMenu):
         total_precio = 0 
         
         for producto in productos:
+            id = producto["ID"]
             nombre = producto["Nombre"]
             cantidad = producto["Cantidad"]
             precio_total = producto["Precio Total"]
             total_precio += precio_total
-            item_text = f"{nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
+            item_text = f"ID:{id}, {nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
             self.producto_listWidget.addItem(item_text)
         
         total_precio = int(total_precio)

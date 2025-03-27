@@ -108,17 +108,20 @@ def delete(_id):
 
 
 def update_product_stock(product_name, sold_quantity):
-    conn = create_connection()
-    sql = "UPDATE productos SET Stock = Stock - ? WHERE Nombre = ?"
+    conn = create_connection()  # Asegúrate de que esta función devuelva una conexión válida
+    sql = "UPDATE productos SET CantidadEnStock = CantidadEnStock - %s WHERE NombreDelProducto = %s"
+    
     try:
         cur = conn.cursor()
-        cur.execute(sql, (sold_quantity, product_name))
-        conn.commit()
+        cur.execute(sql, (sold_quantity, product_name))  # Pasar los valores como parámetros
+        conn.commit()  # Guardar cambios en la base de datos
+        return cur.rowcount  # Retorna el número de filas afectadas
     except Exception as e:
         print(f"Error al actualizar stock para {product_name}: {e}")
     finally:
         cur.close()
         conn.close()
+
 
 
 def productos_mas_vendidos():

@@ -130,16 +130,20 @@ class MainWindowForm(QWidget, MainWindow):
                     )
                 elif index_cell == 7:  # Columna de ServiciosProgramados
                     try:
-                        servicios_programados = json.loads(cell)
+                        servicios_programados = json.loads(cell)  # Convertir el JSON a lista de strings
                         if isinstance(servicios_programados, list) and len(servicios_programados) > 0:
                             nombres_servicios = [
-                                servicio.split(" - ")[0] for servicio in servicios_programados
+                                servicio.split(", ")[1].split(" - ")[0]  # Extraer solo el nombre
+                                for servicio in servicios_programados
+                                if ", " in servicio and " - " in servicio  # Asegurar el formato correcto
                             ]
-                            servicios_texto = ", ".join(nombres_servicios)
+                            servicios_texto = ", ".join(nombres_servicios)  # Unir los nombres en una sola cadena
                         else:
                             servicios_texto = "Sin datos"
-                    except (json.JSONDecodeError, TypeError):
+                    except (json.JSONDecodeError, TypeError, IndexError):
                         servicios_texto = "Error en datos"
+
+
 
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem(servicios_texto)

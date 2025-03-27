@@ -14,6 +14,7 @@ from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.carrito import CarritoForm
 
 from database import citas
+from database.productos import update_product_stock
 
 class AddWindowForm(QWidget, AddEditMenu):
     
@@ -69,6 +70,17 @@ class AddWindowForm(QWidget, AddEditMenu):
             self.clear_inputs()
             self.parent.set_table_data()
 
+        if hasattr (self,"productos_data"):
+            for producto in self.productos_data:
+                product_name = producto["Nombre"]
+                sold_quantity = producto["Cantidad"]
+                print("ESTE ES PRODUCTO NAME", product_name ," Y SOLD QUANTITY", sold_quantity)
+                resultado = update_product_stock(product_name, sold_quantity)
+                if resultado:
+                    print("Stock actualizado correctamente")
+                else:
+                    print("No se encontró el producto")
+
     def select_img(self):
         self.img_path_from = QFileDialog.getOpenFileName()[0]
         img_name= self.img_path_from.split("/")[-1]
@@ -109,14 +121,16 @@ class AddWindowForm(QWidget, AddEditMenu):
     def recibir_productos(self, productos):
         """Recibe la lista de productos desde CarritoForm y los añade al ListWidget."""
         self.producto_listWidget.clear() # Limpiar lista antes de agregar nuevos productos
+        self.productos_data = productos
         total_precio = 0 
         
         for producto in productos:
+            id = producto["ID"]
             nombre = producto["Nombre"]
             cantidad = producto["Cantidad"]
             precio_total = producto["Precio Total"]
             total_precio += precio_total
-            item_text = f"{nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
+            item_text = f"ID:{id}, {nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
             self.producto_listWidget.addItem(item_text)
         
         total_precio = int(total_precio)
