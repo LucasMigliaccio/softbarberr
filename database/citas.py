@@ -3,19 +3,20 @@ from mysql import connector
 from database.connection import create_connection
 
 def insert(data):
-    conn= create_connection()
+    conn = create_connection()
     sql = """INSERT INTO citas (ClienteID, EmpleadoID, FechaHora, Monto, Seña, 
                                 MetodoPago, ServiciosProgramados, Estado, Img_path)
             VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
     try:
-        cur= conn.cursor()
+        cur = conn.cursor()
         cur.execute(sql, data)
         conn.commit()
-        return True
+        cita_id = cur.lastrowid  # Obtiene el ID de la cita recién insertada
+        return cita_id  # Devuelve el ID en lugar de True
     except connector.Error as err:
         print(f"Error at insert_cita function: {err.msg}")
-        return False
+        return None  # Devuelve None en caso de error
     finally:
         cur.close()
         conn.close()

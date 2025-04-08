@@ -14,6 +14,7 @@ from controllers.view_empleado import ViewEmpleadoWindowForm
 from controllers.carrito import CarritoForm
 
 from database import citas
+from database import transacciones
 from database.productos import update_product_stock
 
 class AddWindowForm(QWidget, AddEditMenu):
@@ -62,11 +63,15 @@ class AddWindowForm(QWidget, AddEditMenu):
 
         data = (cliente, barbero, fechayhora_string, monto, seña, metodo_pago,
                 servicios_programados_json, estado, img)
+        
+        cita_id = citas.insert(data)
+        print ("esta es cita id ",cita_id)
 
-        if citas.insert(data):
+        if cita_id:
             if hasattr(self, 'img_path_from') and self.img_path_from:
                 self.save_img()
             print("CITA AÑADIDA")
+            self.registrar_transacciones(cita_id)  # Registrar productos en transacciones
             self.clear_inputs()
             self.parent.set_table_data()
 
@@ -75,11 +80,38 @@ class AddWindowForm(QWidget, AddEditMenu):
                 product_name = producto["Nombre"]
                 sold_quantity = producto["Cantidad"]
                 print("ESTE ES PRODUCTO NAME", product_name ," Y SOLD QUANTITY", sold_quantity)
-                resultado = update_product_stock(product_name, sold_quantity)
+                #resultado = update_product_stock(product_name, sold_quantity)
+                # DESTILDAR PARA RESTAR STOCK
+                resultado = True
                 if resultado:
                     print("Stock actualizado correctamente")
                 else:
                     print("No se encontró el producto")
+
+    def registrar_transacciones(self, cita_id):
+        """Registra cada producto en la tabla transacciones después de agregar una cita."""
+        if hasattr(self, "productos_data"):
+            for producto in self.productos_data:
+                producto_id = producto["ID"]
+                cantidad = producto["Cantidad"]
+                precio_unitario = self.monto_lineEdit.text()
+                precio_total = precio_unitario
+                fecha_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+                print (cita_id, producto_id, cantidad, precio_unitario, precio_total, fecha_hora)
+                transaccion_data = (cita_id, producto_id, cantidad, precio_unitario, precio_total, fecha_hora)
+                
+                if transacciones.insert(transaccion_data):  
+                    print(f"Transacción registrada: CitaID {cita_id}, ProductoID {producto_id}, Cantidad {cantidad}")
+                    
+                    # Actualizar stock después de registrar la transacción
+                    resultado = update_product_stock(producto["Nombre"], cantidad)
+                    if resultado:
+                        print("Stock actualizado correctamente")
+                    else:
+                        print("No se encontró el producto")
+                else:
+                    print("Error al registrar transacción")
 
     def select_img(self):
         self.img_path_from = QFileDialog.getOpenFileName()[0]
