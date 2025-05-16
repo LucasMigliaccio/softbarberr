@@ -37,7 +37,7 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
         window.show()
 
     def config_table(self):
-        column_label= ("ID", "NOMBRE", "DESCRIPCION", "PRECIO", "STOCK", "CODIGO", "CODEBAR", "")
+        column_label= ("ID", "NOMBRE", "DESCRIPCION", "PRECIO", "STOCK", "CODIGO", "CODEBAR","CATEGORIA", "")
         self.productos_table.setColumnCount(len(column_label))
         self.productos_table.setHorizontalHeaderLabels(column_label)
         self.productos_table.setColumnWidth(1,100) #nombre
@@ -46,6 +46,7 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
         self.productos_table.setColumnWidth(4,100) #stock
         self.productos_table.setColumnWidth(5,100) #codigo
         self.productos_table.setColumnWidth(6,100) #codigo_barra
+        self.productos_table.setColumnWidth(7,100) #categoria
         self.productos_table.verticalHeader().setDefaultSectionSize(150)
         self.productos_table.setColumnHidden(0, True)
         self.productos_table.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -62,7 +63,7 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
                 )
             #buttons en la tabla
             self.productos_table.setCellWidget(
-            index_row,7, self.build_action_button()
+            index_row,8, self.build_action_button()
             )
     
 

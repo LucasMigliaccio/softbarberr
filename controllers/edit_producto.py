@@ -21,6 +21,7 @@ class EditWindowProductoForm(QWidget,AddEditProducto):
         self.ui = GeneralCustomUi(self)
         self.setWindowFlag(Qt.Window)
 
+        self.ui.fill_categoria_cb()
         self.fill_inputs()
         self.add_edit_button.setText("EDITAR")
         self.add_edit_button.clicked.connect(self.update_empleado)
@@ -37,8 +38,9 @@ class EditWindowProductoForm(QWidget,AddEditProducto):
         stock = self.stock_lineEdit.text()
         codigo =self.codigo_lineEdit.text()
         codigo_de_barra =self.codigobarra_lineEdit.text()
+        categoria= self.categoria_comboBox.currentText()
 
-        data = (nombre, descripcion, precio, stock, codigo, codigo_de_barra) 
+        data = (nombre, descripcion, precio, stock, codigo, codigo_de_barra,categoria) 
         if productos.update(self.producto_id, data):
             print("PRODUCTO EDITADO")
             self.parent.set_table_data()
@@ -53,3 +55,8 @@ class EditWindowProductoForm(QWidget,AddEditProducto):
         self.stock_lineEdit.setText(str(data[4]))
         self.codigo_lineEdit.setText(str(data[5]))
         self.codigobarra_lineEdit.setText(str(data[6]))
+        self.set_current_categoria_cb(str(data[7]))
+
+    def set_current_categoria_cb(self, text):
+        text_index= self.categoria_comboBox.findText(text)
+        self.categoria_comboBox.setCurrentIndex(text_index)

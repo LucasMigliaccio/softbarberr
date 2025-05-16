@@ -15,6 +15,11 @@ pago_data = (
     "Transferencia Bancaria"
 )
 
+categoria_data = (
+    "SERVICIO",
+    "PRODUCTO"
+)
+
 data_cb= empleados.comboBox_empleados()
 lista_formateada = [f"{id} ) {nombre}" for id, nombre in data_cb]
 empleados_data= tuple(lista_formateada)
@@ -85,3 +90,7 @@ class GeneralCustomUi():
         self.ui.pago_comboBox.addItems(pago_data)
         self.ui.cliente_comboBox.addItems(clientes_data)
         self.ui.barbero_comboBox.addItems(empleados_data)
+    
+
+    def fill_categoria_cb(self):
+        self.ui.categoria_comboBox.addItems(categoria_data)

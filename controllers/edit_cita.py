@@ -57,7 +57,9 @@ class EditWindowForm(QWidget,AddEditMenu):
         seña = self.lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
         servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
+
         servicios_programados_json = json.dumps(servicios_programados)
+        print("estos son los items de i:", servicios_programados_json)
         estado = self.estado_comboBox.currentText()
 
         if not hasattr(self, 'img_path_to') or not self.img_path_to:
@@ -69,6 +71,9 @@ class EditWindowForm(QWidget,AddEditMenu):
         data = (cliente, barbero, fechayhora_string, monto,seña, metodo_pago,
                 servicios_programados_json, estado, img)
 
+        #######################3
+        print("$$$$$$$$$$$$$$$$$$$$$ \n", servicios_programados_json)
+        ####################
         if citas.update(self.cita_id, data):
             if hasattr(self, 'img_path_from') and self.img_path_from:
                 self.replace_img()
@@ -125,6 +130,7 @@ class EditWindowForm(QWidget,AddEditMenu):
         else:
             self.producto_listWidget.addItem("Datos no válidos")  # En caso de error
 
+        
         self.set_current_pago_cb(data[7])
         self.set_current_estado_cb(data[8])
 
@@ -134,6 +140,9 @@ class EditWindowForm(QWidget,AddEditMenu):
         self.new_img = img_name
 
         self.imagen_lineEdit.setText(img_name)
+        
+        self.productos_anteriores = json.loads(data[6])  # Guardamos para revertir stock
+
 
     def select_img(self):
         self.img_path_from = QFileDialog.getOpenFileName()[0]

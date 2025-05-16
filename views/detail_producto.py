@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'detail_producto.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.4
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -89,25 +89,25 @@ class DetailProducto(object):
         self.minimize_button.setObjectName(u"minimize_button")
         self.minimize_button.setGeometry(QRect(0, 0, 22, 22))
         icon = QIcon()
-        icon.addFile(u"./assets/icons/minimize-window.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"L:/AngelCuk/assets/icons/minimize-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.minimize_button.setIcon(icon)
         self.restore_button = QToolButton(self.butttons_holder_frame)
         self.restore_button.setObjectName(u"restore_button")
         self.restore_button.setGeometry(QRect(30, 0, 22, 22))
         icon1 = QIcon()
-        icon1.addFile(u"./assets/icons/restore-window.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"L:/AngelCuk/assets/icons/restore-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.restore_button.setIcon(icon1)
         self.maximize_button = QToolButton(self.butttons_holder_frame)
         self.maximize_button.setObjectName(u"maximize_button")
         self.maximize_button.setGeometry(QRect(30, 0, 22, 22))
         icon2 = QIcon()
-        icon2.addFile(u"./assets/icons/maximize-window.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u"L:/AngelCuk/assets/icons/maximize-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.maximize_button.setIcon(icon2)
         self.close_button = QToolButton(self.butttons_holder_frame)
         self.close_button.setObjectName(u"close_button")
         self.close_button.setGeometry(QRect(60, 0, 22, 22))
         icon3 = QIcon()
-        icon3.addFile(u"./assets/icons/close-window.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u"L:/AngelCuk/assets/icons/close-window.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.close_button.setIcon(icon3)
 
         self.horizontalLayout_6.addWidget(self.butttons_holder_frame)
@@ -266,6 +266,7 @@ class DetailProducto(object):
         self.frame_codigos.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_codigos)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(11, -1, -1, 0)
         self.frame_code = QFrame(self.frame_codigos)
         self.frame_code.setObjectName(u"frame_code")
         self.frame_code.setFrameShape(QFrame.StyledPanel)
@@ -330,7 +331,7 @@ class DetailProducto(object):
         self.horizontalLayout_3 = QHBoxLayout(self.frame_descripcion)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 9, 0, 9)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 9)
         self.frame_10 = QFrame(self.frame_descripcion)
         self.frame_10.setObjectName(u"frame_10")
         self.frame_10.setFrameShape(QFrame.StyledPanel)
@@ -339,6 +340,25 @@ class DetailProducto(object):
         self.verticalLayout_11.setSpacing(0)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.codigobarras_tittle_2 = QLabel(self.frame_10)
+        self.codigobarras_tittle_2.setObjectName(u"codigobarras_tittle_2")
+        self.codigobarras_tittle_2.setFont(font1)
+        self.codigobarras_tittle_2.setStyleSheet(u"color: rgb(230, 230, 230);\n"
+"font: 18pt \"Algerian\";")
+        self.codigobarras_tittle_2.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_11.addWidget(self.codigobarras_tittle_2)
+
+        self.categoria_label = QLabel(self.frame_10)
+        self.categoria_label.setObjectName(u"categoria_label")
+        self.categoria_label.setStyleSheet(u"color: white;\n"
+"font-size: 12px;\n"
+"font: 12pt \"impact\";")
+        self.categoria_label.setAlignment(Qt.AlignCenter)
+        self.categoria_label.setMargin(5)
+
+        self.verticalLayout_11.addWidget(self.categoria_label)
+
         self.pedido_tittle_8 = QLabel(self.frame_10)
         self.pedido_tittle_8.setObjectName(u"pedido_tittle_8")
         font2 = QFont()
@@ -353,7 +373,7 @@ class DetailProducto(object):
 
         self.verticalLayout_11.addWidget(self.pedido_tittle_8)
 
-        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout_11.addItem(self.verticalSpacer)
 
@@ -435,6 +455,8 @@ class DetailProducto(object):
         self.codigo_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
         self.codigobarras_tittle.setText(QCoreApplication.translate("add_edit_menu", u"CODIGO DE BARRAS", None))
         self.codigobarras_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
+        self.codigobarras_tittle_2.setText(QCoreApplication.translate("add_edit_menu", u"CATEGOR\u00cdA", None))
+        self.categoria_label.setText(QCoreApplication.translate("add_edit_menu", u"TextLabel", None))
         self.pedido_tittle_8.setText(QCoreApplication.translate("add_edit_menu", u"DESCRIPCI\u00d3N", None))
         self.add_edit_button_2.setText(QCoreApplication.translate("add_edit_menu", u"SALIR", None))
     # retranslateUi

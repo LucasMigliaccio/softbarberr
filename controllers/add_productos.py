@@ -17,6 +17,7 @@ class AddProductoForm(QWidget, AddEditProducto):
         self.setupUi(self)
         self.ui = GeneralCustomUi(self)
         self.setWindowFlag(Qt.Window)
+        self.ui.fill_categoria_cb()
         
         self.add_edit_button.clicked.connect(self.add_producto)
         self.cancel_button.clicked.connect(self.close)
@@ -30,9 +31,10 @@ class AddProductoForm(QWidget, AddEditProducto):
         precio  =self.precio_lineEdit.text()
         stock = self.stock_lineEdit.text()
         codigo =self.filtrar_codigo()
-        codigo_de_barra =self.codigobarra_lineEdit.text()
+        codigo_de_barra = self.codigobarra_lineEdit.text()
+        categoria= self.categoria_comboBox.currentText()
 
-        data = (nombre, descripcion, precio, stock, codigo, codigo_de_barra)
+        data = (nombre, descripcion, precio, stock, codigo, codigo_de_barra, categoria)
 
         if productos.insert(data):
             print("PRODUCTO AÑADIDO")
@@ -56,6 +58,7 @@ class AddProductoForm(QWidget, AddEditProducto):
         self.stock_lineEdit.clear()
         self.codigo_lineEdit.clear()
         self.codigobarra_lineEdit.clear()
+        self.categoria_comboBox.clear()
 
 
 
