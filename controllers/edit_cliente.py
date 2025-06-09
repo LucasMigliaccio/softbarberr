@@ -45,7 +45,7 @@ class EditWindowClienteForm(QWidget,AddEditCliente):
         if clientes.update(self.cliente_id, data):
             print("CLIENTE EDITADO")
             self.parent.set_table_data()
-            self.close
+            self.close()
         
     def fill_inputs(self):
         data = clientes.select_by_id(self.cliente_id)

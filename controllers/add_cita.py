@@ -51,8 +51,25 @@ class AddWindowForm(QWidget, AddEditMenu):
         monto = self.monto_lineEdit.text()
         seña = self.lineEdit.text()
         metodo_pago = self.pago_comboBox.currentText()
-        servicios_programados= [self.producto_listWidget.item(i).text() for i in range(self.producto_listWidget.count())]
-        servicios_programados_json = json.dumps(servicios_programados)
+
+    # SERVICIOS #
+        servicios_programados = []
+
+        for i in range(self.producto_listWidget.count()):
+            texto = self.producto_listWidget.item(i).text()
+            partes = dict(
+                campo.strip().split(": ", 1)
+                for campo in texto.split(", ")
+                if ": " in campo
+            )
+            partes["ID"] = int(partes["ID"])
+            partes["Cantidad"] = int(partes["Cantidad"])
+            partes["Precio Total"] = float(partes["Precio Total"])
+            servicios_programados.append(partes)
+
+        servicios_programados_json = json.dumps(servicios_programados, ensure_ascii=False)
+    ####
+
         estado = self.estado_comboBox.currentText()
 
         if not hasattr(self, 'img_path_to') or not self.img_path_to:
@@ -162,7 +179,7 @@ class AddWindowForm(QWidget, AddEditMenu):
             cantidad = producto["Cantidad"]
             precio_total = producto["Precio Total"]
             total_precio += precio_total
-            item_text = f"ID:{id}, {nombre} - Cantidad: {cantidad}, Precio Total: {precio_total}"
+            item_text = f"ID: {id}, Nombre: {nombre}, Cantidad: {cantidad}, Precio Total: {precio_total}"
             self.producto_listWidget.addItem(item_text)
         
         total_precio = int(total_precio)

@@ -2,6 +2,8 @@ from mysql import connector
 
 from database.connection import create_connection
 
+from database import productos
+
 def insert(data):
     conn = create_connection()
     sql = """INSERT INTO citas (ClienteID, EmpleadoID, FechaHora, Monto, Seña, 
@@ -250,6 +252,23 @@ def prueba_json_servicios():
         return citas
     except connector.Error as err:
         print(f"Error at select_all_cita function: {err.msg}")
+        return False
+    finally:
+        cur.close()
+        conn.close()
+
+
+def update_product_stock_by_id(product_id, delta_quantity):
+    conn = create_connection()
+    sql = "UPDATE productos SET CantidadEnStock = CantidadEnStock - %s WHERE ProductoID = %s"
+
+    try:
+        cur = conn.cursor()
+        cur.execute(sql, (delta_quantity, product_id))
+        conn.commit()
+        return cur.rowcount > 0
+    except Exception as e:
+        print(f"Error al actualizar stock para ID {product_id}: {e}")
         return False
     finally:
         cur.close()

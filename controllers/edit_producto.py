@@ -44,7 +44,8 @@ class EditWindowProductoForm(QWidget,AddEditProducto):
         if productos.update(self.producto_id, data):
             print("PRODUCTO EDITADO")
             self.parent.set_table_data()
-            self.close
+            self.close()
+
         
     def fill_inputs(self):
         data = productos.select_by_id(self.producto_id)

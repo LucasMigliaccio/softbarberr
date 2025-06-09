@@ -43,10 +43,7 @@ class CarritoForm(QWidget, CarritoCompras):
         self.ui.mouse_press_event(event)
 
     def agregar_al_carrito(self):
-        # Almacena varias filas seleccionadas 
         selected_indexes = self.productos_tableView.selectionModel().selectedRows()
-        print ("++++++++++",selected_indexes)
-
         for index in selected_indexes:
             fila_completa = []
             for column in range(self.productos_model.columnCount()):
@@ -54,9 +51,7 @@ class CarritoForm(QWidget, CarritoCompras):
                 fila_completa.append(cell_data)
 
             cantidad = self.contador_spinBox.value()
-            #if cantidad > 1: 
             self.carrito_model.add_to_cart(fila_completa, cantidad)
-            self.filas_seleccionadas.append(fila_completa)
 
 
 

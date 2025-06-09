@@ -27,11 +27,25 @@ class CarritoTableModel(QAbstractTableModel):
                 return str(section + 1)  # Devuelve el número de fila
         return None
 
+
     def add_to_cart(self, product, quantity):
+        product_id = product[0]
+        
+        # Buscar si el producto ya está en el carrito
+        for i, item in enumerate(self._carrito):
+            if item[0] == product_id:
+                # Ya existe, actualizamos cantidad y total
+                self._carrito[i][2] += quantity  # Sumar la cantidad
+                self._carrito[i][4] = self._carrito[i][2] * self._carrito[i][3]  # Recalcular total
+                self.dataChanged.emit(self.index(i, 0), self.index(i, self.columnCount() - 1))
+                return
+
+        # Si no existe, agrega nuevo
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
-        total_price = product[3] * quantity  # Asume que el precio está en la columna 3
+        total_price = product[3] * quantity  # Precio por unidad * cantidad
         self._carrito.append([product[0], product[1], quantity, product[3], total_price])
         self.endInsertRows()
+
 
     def remove_from_cart(self, row):
         self.beginRemoveRows(QModelIndex(), row, row)

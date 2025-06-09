@@ -42,7 +42,7 @@ class EditWindowEmpleadoForm(QWidget,AddEditEmpleado):
         if empleados.update(self.empleado_id, data):
             print("EMPLEADO EDITADO")
             self.parent.set_table_data()
-            self.close
+            self.close()
         
     def fill_inputs(self):
         data = empleados.select_by_id(self.empleado_id)
