@@ -128,22 +128,21 @@ class MainWindowForm(QWidget, MainWindow):
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem("$ " + str(cell))
                     )
-                elif index_cell == 7:  # Columna de ServiciosProgramados
+                elif index_cell == 7:  # ServiciosProgramados
                     try:
-                        servicios_programados = json.loads(cell)  # Convertir el JSON a lista de diccionarios
+                        servicios_programados = json.loads(cell)
                         if isinstance(servicios_programados, list) and servicios_programados:
                             servicios_texto = ", ".join(
                                 f"{servicio['Nombre']} ({servicio['Cantidad']})"
                                 for servicio in servicios_programados
-                                if isinstance(servicio, dict) and 'Nombre' in servicio and 'Cantidad' in servicio
+                                if isinstance(servicio, dict)
+                                and 'Nombre' in servicio
+                                and 'Cantidad' in servicio
                             )
                         else:
                             servicios_texto = "Sin datos"
                     except (json.JSONDecodeError, TypeError, KeyError):
                         servicios_texto = "Error en datos"
-
-
-
 
                     self.infopedidos_table.setItem(
                         index_row, index_cell, QTableWidgetItem(servicios_texto)
@@ -153,13 +152,14 @@ class MainWindowForm(QWidget, MainWindow):
                         index_row, index_cell, QTableWidgetItem(str(cell))
                     )
 
-            # Agregar botón de acción
+            # Agregar botón de acción en la columna 10
             self.infopedidos_table.setCellWidget(
                 index_row, 10, self.build_action_button()
             )
 
-        # Botón "Cargar más" en la última fila
-        last_row_index = len(data)
+        # ✅ Agregar botón "Cargar más" después de insertar los datos
+        last_row_index = self.infopedidos_table.rowCount()
+        self.infopedidos_table.insertRow(last_row_index)  # Asegúrate de insertar esta fila
         self.infopedidos_table.setSpan(
             last_row_index, 0, 1, self.infopedidos_table.columnCount()
         )

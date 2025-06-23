@@ -15,7 +15,7 @@ from controllers.carrito import CarritoForm
 
 from database import citas
 from database import transacciones
-from database.productos import update_product_stock
+from database.productos import update_product_stock, restart_product_stock
 
 class AddWindowForm(QWidget, AddEditMenu):
     
@@ -94,16 +94,19 @@ class AddWindowForm(QWidget, AddEditMenu):
 
         if hasattr (self,"productos_data"):
             for producto in self.productos_data:
+                producto_id = producto["ID"]
                 product_name = producto["Nombre"]
                 sold_quantity = producto["Cantidad"]
                 print("ESTE ES PRODUCTO NAME", product_name ," Y SOLD QUANTITY", sold_quantity)
-                #resultado = update_product_stock(product_name, sold_quantity)
+                resultado = restart_product_stock(producto_id, sold_quantity)
                 # DESTILDAR PARA RESTAR STOCK
-                resultado = True
+                #resultado = True
                 if resultado:
                     print("Stock actualizado correctamente")
                 else:
                     print("No se encontró el producto")
+
+                self.close()
 
     def registrar_transacciones(self, cita_id):
         """Registra cada producto en la tabla transacciones después de agregar una cita."""
@@ -122,7 +125,7 @@ class AddWindowForm(QWidget, AddEditMenu):
                     print(f"Transacción registrada: CitaID {cita_id}, ProductoID {producto_id}, Cantidad {cantidad}")
                     
                     # Actualizar stock después de registrar la transacción
-                    resultado = update_product_stock(producto["Nombre"], cantidad)
+                    resultado = restart_product_stock(producto_id, cantidad)
                     if resultado:
                         print("Stock actualizado correctamente")
                     else:
