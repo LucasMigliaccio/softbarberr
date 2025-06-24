@@ -96,9 +96,12 @@ class AddWindowForm(QWidget, AddEditMenu):
             for producto in self.productos_data:
                 producto_id = producto["ID"]
                 product_name = producto["Nombre"]
-                sold_quantity = producto["Cantidad"]
-                print("ESTE ES PRODUCTO NAME", product_name ," Y SOLD QUANTITY", sold_quantity)
-                resultado = restart_product_stock(producto_id, sold_quantity)
+                quantity = producto["Cantidad"]
+                print("ESTE ES PRODUCTO NAME", product_name ," Y SOLD QUANTITY", quantity)
+                quantity = int(str(quantity).strip())
+                producto_id = int(str(producto_id).strip())
+
+                resultado = restart_product_stock(quantity, producto_id)
                 # DESTILDAR PARA RESTAR STOCK
                 #resultado = True
                 if resultado:
@@ -125,7 +128,10 @@ class AddWindowForm(QWidget, AddEditMenu):
                     print(f"Transacción registrada: CitaID {cita_id}, ProductoID {producto_id}, Cantidad {cantidad}")
                     
                     # Actualizar stock después de registrar la transacción
-                    resultado = restart_product_stock(producto_id, cantidad)
+                    cantidad = int(str(cantidad).strip())
+                    producto_id = int(str(producto_id).strip())
+
+                    resultado = restart_product_stock(cantidad, producto_id)
                     if resultado:
                         print("Stock actualizado correctamente")
                     else:
