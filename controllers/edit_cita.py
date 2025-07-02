@@ -107,7 +107,7 @@ class EditWindowForm(QWidget,AddEditMenu):
                 continue  # sin cambios
 
             # Si delta > 0 => se están agregando unidades => restar stock
-            # Si delta < 0 => se están quitando unidades => devolver stock
+            # Si delta < 0 => se están restando unidades => devolver stock
             éxito = citas.update_product_stock_by_id(producto_id, delta)
             if not éxito:
                 print(f"No pude ajustar stock del producto {producto_id}")

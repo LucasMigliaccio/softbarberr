@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>793</height>
+    <height>550</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -281,6 +281,12 @@
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
                 <widget class="QLabel" name="codigobarra_title">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>40</height>
+                  </size>
+                 </property>
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -294,7 +300,7 @@
                   <string notr="true">color: rgb(230, 230, 230);</string>
                  </property>
                  <property name="text">
-                  <string>CODIGO DE BARRA</string>
+                  <string>PRODUCTO NOMBRE</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -302,22 +308,41 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="codigobarra_lineEdit">
-                 <property name="minimumSize">
+                <widget class="QLabel" name="product_name_label">
+                 <property name="maximumSize">
                   <size>
-                   <width>0</width>
-                   <height>30</height>
+                   <width>16777215</width>
+                   <height>40</height>
                   </size>
                  </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Black</family>
+                   <pointsize>14</pointsize>
+                   <weight>75</weight>
+                   <italic>true</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);
-border: 1px solid #cbcbcb
-</string>
+                  <string notr="true">color: rgb(230, 230, 230);</string>
+                 </property>
+                 <property name="text">
+                  <string>product_name</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLabel" name="nombre_tittle">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>40</height>
+                  </size>
+                 </property>
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -335,7 +360,7 @@ border: 1px solid #cbcbcb
                   <string notr="true">color: rgb(230, 230, 230);</string>
                  </property>
                  <property name="text">
-                  <string>PRODUCTO</string>
+                  <string>CANTIDAD ACTUAL DE STOCK</string>
                  </property>
                  <property name="textFormat">
                   <enum>Qt::AutoText</enum>
@@ -346,22 +371,13 @@ border: 1px solid #cbcbcb
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="nombre_lineEdit">
-                 <property name="minimumSize">
+                <widget class="QLabel" name="stock_actual_label">
+                 <property name="maximumSize">
                   <size>
-                   <width>0</width>
-                   <height>30</height>
+                   <width>16777215</width>
+                   <height>40</height>
                   </size>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);
-border: 1px solid #cbcbcb
-</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="stock_tittle">
                  <property name="font">
                   <font>
                    <family>Segoe UI Black</family>
@@ -375,7 +391,7 @@ border: 1px solid #cbcbcb
                   <string notr="true">color: rgb(230, 230, 230);</string>
                  </property>
                  <property name="text">
-                  <string>CANTIDAD DE STOCK</string>
+                  <string>stock_actual_label</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -383,7 +399,36 @@ border: 1px solid #cbcbcb
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="stock_lineEdit">
+                <widget class="QLabel" name="stock_tittle">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Black</family>
+                   <pointsize>14</pointsize>
+                   <weight>75</weight>
+                   <italic>true</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+color: rgb(200, 157, 48);</string>
+                 </property>
+                 <property name="text">
+                  <string>CANTIDAD NUEVA DE STOCK</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -395,27 +440,60 @@ border: 1px solid #cbcbcb
 border: 1px solid #cbcbcb
 </string>
                  </property>
+                 <property name="maximum">
+                  <number>999999</number>
+                 </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="add_edit_button">
-                 <property name="minimumSize">
+                <widget class="QFrame" name="frame">
+                 <property name="maximumSize">
                   <size>
-                   <width>0</width>
-                   <height>45</height>
+                   <width>16777215</width>
+                   <height>140</height>
                   </size>
                  </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Black</family>
-                   <pointsize>12</pointsize>
-                   <weight>75</weight>
-                   <italic>true</italic>
-                   <bold>true</bold>
-                  </font>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">QPushButton{
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="add_edit_button">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>45</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI Black</family>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>true</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
 	background-color: rgb(60, 76, 116);
 	color: white;
 }
@@ -427,31 +505,31 @@ QPushButton:hover{
 
 
 </string>
-                 </property>
-                 <property name="text">
-                  <string>AGREGAR/ACTUALIZAR</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="cancel_button">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>45</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Black</family>
-                   <pointsize>12</pointsize>
-                   <weight>75</weight>
-                   <italic>true</italic>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QPushButton{
+                    </property>
+                    <property name="text">
+                     <string>AGREGAR/ACTUALIZAR</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="cancel_button">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>45</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI Black</family>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>true</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
 	background-color: rgb(148, 52, 68  );
 	color: white;
 }
@@ -463,10 +541,13 @@ QPushButton:hover{
 
 
 </string>
-                 </property>
-                 <property name="text">
-                  <string>CANCELAR</string>
-                 </property>
+                    </property>
+                    <property name="text">
+                     <string>CANCELAR</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>

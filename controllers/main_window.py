@@ -44,6 +44,8 @@ class MainWindowForm(QWidget, MainWindow):
         self.pushButton_9.clicked.connect(self.open_venta_productos_view)
         self.pushButton_9.setText("Más Vendidos")
 
+        self.co_pushButton_pedidos.setText("Ajustar Stock")
+
         self.recuento_button.clicked.connect(self.open_recuento_view)
         self.op_pushButton_cliente.clicked.connect(self.open_clientes_view)
         self.co_pushButton_menu.clicked.connect(self.open_empleados_view)

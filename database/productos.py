@@ -165,38 +165,11 @@ def restart_product_stock(quantity,producto_id):
     finally:
         cur.close()
         conn.close()
-'''
-def restart_product_stock(quantity, product_id):
-    conn = create_connection()
-    sql_update = f"UPDATE productos SET CantidadEnStock = CantidadEnStock - ? WHERE ProductoID = ?"
-    print(f"este es:{product_id}")
-    print(f"este es:{quantity}")
-
-    try:
-        cur = conn.cursor()
-        cur.execute(sql_update, (quantity, product_id))
-
-        if cur.rowcount == 0:
-            print(f"Producto '{product_id}' no encontrado o sin cambios.")
-            return False
-
-        conn.commit()
-        print(f"✅ Stock actualizado para producto '{product_id}'. Cantidad restada: {quantity}")
-        return True
-
-    except Exception as e:
-        print(f"❌ Error al actualizar stock para '{product_id}': {e}")
-        return False
-
-    finally:
-        cur.close()
-        conn.close()
-'''
 
 def productos_mas_vendidos():
     pass
 
-def add_stock_producto(nuevo_stock,_id):
+def update_stock_producto(nuevo_stock,_id):
     conn = create_connection() 
     sql_update = f"UPDATE productos SET CantidadEnStock = CantidadEnStock + {nuevo_stock} WHERE ProductoID = {_id} "
 

@@ -96,7 +96,34 @@ class RecuentoForm(QWidget, RecuentoDetailWindow):
         # Conversion a dataFrame
         columns = ["Método de Pago", "Monto", "Monto Abonado", "Total Señas", "Señas Abonadas", "Total Pendiente Cobro"]
         df = pd.DataFrame(cierre, columns=columns)
+        # Valores por defecto
 
+        primera_fila = {
+            "Método de Pago": "Efectivo",
+            "Monto": 0,
+            "Monto Abonado": 0,
+            "Total Señas": 0,
+            "Señas Abonadas": 0,
+            "Total Pendiente Cobro": 0
+        }
+        segunda_fila = {
+            "Método de Pago": "Transferencia",
+            "Monto": 0,
+            "Monto Abonado": 0,
+            "Total Señas": 0,
+            "Señas Abonadas": 0,
+            "Total Pendiente Cobro": 0
+        }
+        tercer_fila = {
+            "Método de Pago": "Mercado Pago",
+            "Monto": 0,
+            "Monto Abonado": 0,
+            "Total Señas": 0,
+            "Señas Abonadas": 0,
+            "Total Pendiente Cobro": 0
+        }
+
+        
         # Extraer primera y segunda fila
         if len(df) > 0:
             primera_fila = df.iloc[0].to_dict() 

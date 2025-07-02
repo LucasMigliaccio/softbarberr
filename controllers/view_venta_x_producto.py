@@ -34,10 +34,11 @@ class ViewVentaProductos(QWidget, ViewProductos):
             productos = json.loads(productos_json.replace("\\", ""))
             productos_lista = []
             for item in productos:
-                nombre = item.split(",")[1].split("-")[0]
+                nombre = str(item.split("Nombre: ")[1].split(",")[0])
                 cantidad = int(item.split("Cantidad: ")[1].split(",")[0])
                 monto = int(item.split("Precio Total: ")[1].split(",")[0])
                 productos_lista.append((nombre, cantidad, monto))
+                print (productos_lista, "ESTE ES LA LISTA DE PRODUCTOS RECIBIDA, BORRAR LUEGO")
             return productos_lista
         except (json.JSONDecodeError, AttributeError, IndexError, ValueError):
             return []  # Si hay errores, retorna una lista vacía

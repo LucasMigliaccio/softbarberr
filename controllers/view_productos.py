@@ -10,6 +10,7 @@ from views.add_producto import AddEditProducto
 from controllers.add_productos import AddProductoForm
 from controllers.edit_producto import EditWindowProductoForm
 from controllers.details_productos import DetailWindowProductoForm
+from controllers.adjust_stock import AdjustStockProductoForm
 
 from database import productos
 
@@ -47,6 +48,7 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
         self.productos_table.setColumnWidth(5,100) #codigo
         self.productos_table.setColumnWidth(6,100) #codigo_barra
         self.productos_table.setColumnWidth(7,100) #categoria
+        self.productos_table.setColumnWidth(8,200) #buttons
         self.productos_table.verticalHeader().setDefaultSectionSize(150)
         self.productos_table.setColumnHidden(0, True)
         self.productos_table.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -83,11 +85,13 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
             self.populate_table(data)
     
     def build_action_button(self):
+        stock_button=components.Butonn("stock","#FEE43D")
         view_button=components.Butonn("view","#17A288")
         edit_button=components.Butonn("edit","#007BFF")
         delete_button=components.Butonn("delete","#DC3545")
 
         buttons_layout = QHBoxLayout()
+        buttons_layout.addWidget(stock_button)
         buttons_layout.addWidget(view_button)
         buttons_layout.addWidget(edit_button)
         buttons_layout.addWidget(delete_button)
@@ -95,6 +99,7 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
         buttons_frame =QFrame()
         buttons_frame.setLayout(buttons_layout)
 
+        stock_button.clicked.connect(self.adjust_stock_producto)
         view_button.clicked.connect(self.view_producto)
         edit_button.clicked.connect(self.edit_producto)
         delete_button.clicked.connect(self.delete_producto)
@@ -107,6 +112,10 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
     
     def open_edit_window_producto(self, producto_id):
         window= EditWindowProductoForm(self, producto_id)
+        window.show()
+
+    def open_addjust_stock_window_producto(self, producto_id):
+        window= AdjustStockProductoForm(self, producto_id)
         window.show()
 
     def get_producto_id_from_table(self,table,button):
@@ -130,6 +139,14 @@ class ViewProductoWindowForm(QWidget,ViewProducto):
         if button:
             producto_id = self.get_producto_id_from_table(table, button)
             self.open_edit_window_producto(producto_id)
+
+    def adjust_stock_producto(self):
+        button = self.sender()
+        table = self.productos_table
+
+        if button:
+            producto_id = self.get_producto_id_from_table(table, button)
+            self.open_addjust_stock_window_producto(producto_id)
 
     def delete_producto(self):
         button = self.sender()
